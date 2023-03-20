@@ -278,7 +278,7 @@
         {
           "Id": "46d36b62130540b7b7de56a3abcc1955",
           "Name": "LabelWidth_optional",
-          "Description": "int\nDefault value : 120",
+          "Description": "int\nDefault value : 140",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -533,7 +533,7 @@
         {
           "Id": "ddfa700aea6d4d6e8dc27fda007da8ab",
           "Name": "Values_",
-          "Description": "var[]",
+          "Description": "var[]..[]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -846,7 +846,7 @@
         },
         {
           "Id": "17566373afc346acabe722252123cdb2",
-          "Name": "ViewFamilyType",
+          "Name": "ViewFamilyTypes",
           "Description": "var[]..[]",
           "UsingDefaultValue": false,
           "Level": 2,
@@ -951,7 +951,7 @@
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "6073820723964acb8094bc9ab299d152",
+          "Id": "845cf8ff14684cb1b04d132dbd88f4cb",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -962,36 +962,6 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Orchid.RevitProject.Views.ViewType.ByName@string",
-      "Id": "c893568635d7486aaa9a9abe9f131ab3",
-      "Inputs": [
-        {
-          "Id": "eaafc1d052da4bbbba93ab31a3da8ac6",
-          "Name": "name",
-          "Description": "View name as string.\n\nstring",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "9cff0bd0edb94afab62a7c39292eb2ff",
-          "Name": "ViewType",
-          "Description": "View type as Dynamo type.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Get view by name.\n\nViewType.ByName (name: string): Element"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -1711,13 +1681,13 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Orchid.RevitProject.Views.View.ByType@Revit.Elements.Element,bool",
+      "FunctionSignature": "Orchid.RevitProject.Views.View.ByType@Orchid.RevitProject.Common.Document,var,bool",
       "Id": "31fbabab24c74f4187f1869fd4541958",
       "Inputs": [
         {
           "Id": "56b7137b798948d4aa558eeeca832192",
-          "Name": "viewType",
-          "Description": "ViewType as Dynamo type.\n\nElement",
+          "Name": "document",
+          "Description": "Document (rvt) as Orchid document.\n\nDocument\nDefault value : null (disabled)",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1725,6 +1695,15 @@
         },
         {
           "Id": "28c36e160c9740809ed0aa17121dd5e8",
+          "Name": "viewType",
+          "Description": "ViewType as Dynamo type.\n\nvar",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "87970c1ad85845e0a6c0ccefd905c0a8",
           "Name": "condense",
           "Description": "Condense to shortest feasible output?\n\nbool\nDefault value : true",
           "UsingDefaultValue": true,
@@ -1745,7 +1724,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "All view by viewType in current document.\n\nView.ByType (viewType: Element, condense: bool = true): var[]..[]"
+      "Description": "All view by viewType in document.\n\nView.ByType (document: Document = null, viewType: var, condense: bool = true): var[]..[]\n\nNamespace:\nOrchid.RevitProject.Views"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -1775,7 +1754,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get view by name.\n\nViewType.ByName (name: string): Element"
+      "Description": "Get view by name.\n\nViewType.ByName (name: string): var[]..[]\n\nNamespace:\nOrchid.RevitProject.Views"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -2001,7 +1980,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Determines if any items in the given list has a true value.\n\nList.AnyTrue (list: bool[]): bool"
+      "Description": "Determines if any items in the given list has a true value.\n\nList.AnyTrue (list: bool[]): bool\n\nNamespace:\nOrchid.Common"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -4396,7 +4375,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get crop box.\n\nView.GetCropBox (view: Element): var[]..[]"
+      "Description": "Get crop box.\n\nView.GetCropBox (view: Element): var[]..[]\n\nNamespace:\nOrchid.RevitProject.Views"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -4879,7 +4858,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set crop box by bounding box.\n\nView.SetCropBox (view: Element, curve: Curve[]): Element"
+      "Description": "Set crop box by bounding box.\n\nView.SetCropBox (view: Element, curve: Curve[]): Element\n\nNamespace:\nOrchid.RevitProject.Views"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -5047,7 +5026,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Open view in the active document.\n\nDocument.OpenView (view: Element): Element"
+      "Description": "Open view in the active document.\n\nDocument.OpenView (view: Element): Element\n\nNamespace:\nOrchid.RevitProject.Common"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
@@ -5462,6 +5441,36 @@
       ],
       "Replication": "Auto",
       "Description": "Get the canonical Z axis Vector (0,0,1)\n\nVector.ZAxis ( ): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElementType.ByName@string",
+      "Id": "1f168e22db1c4491917ed20f25d922cb",
+      "Inputs": [
+        {
+          "Id": "0948017c3a8f4276b32d338e1ca34709",
+          "Name": "name",
+          "Description": "Name of the type\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e86c86f784a84623b46b2d334bd96707",
+          "Name": "ElementType",
+          "Description": "Type Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the type Element with the given name.\n\nElementType.ByName (name: string): ElementType"
     }
   ],
   "Connectors": [
@@ -5646,14 +5655,9 @@
       "Id": "962876d4a91b457dbba92055cec6092a"
     },
     {
-      "Start": "6073820723964acb8094bc9ab299d152",
-      "End": "eaafc1d052da4bbbba93ab31a3da8ac6",
-      "Id": "8ca2e4940797490d8bc4c51e3b4455ca"
-    },
-    {
-      "Start": "9cff0bd0edb94afab62a7c39292eb2ff",
-      "End": "17566373afc346acabe722252123cdb2",
-      "Id": "e1d88e1c75244a3e81dd9cad065f58a7"
+      "Start": "845cf8ff14684cb1b04d132dbd88f4cb",
+      "End": "0948017c3a8f4276b32d338e1ca34709",
+      "Id": "7dc153046fbf452ea3d58ddb156f6a2c"
     },
     {
       "Start": "c1684b0713584590889c504c71ac2370",
@@ -6404,6 +6408,11 @@
       "Start": "c2eb750ba6fc499fbc450d48e00c733d",
       "End": "2217503266064aacb5ed82848989393c",
       "Id": "2c88e50c905e4884bc29176d5f946af0"
+    },
+    {
+      "Start": "e86c86f784a84623b46b2d334bd96707",
+      "End": "17566373afc346acabe722252123cdb2",
+      "Id": "16b36286f97a45eb92196c2f7d059a7b"
     }
   ],
   "Dependencies": [
@@ -6433,20 +6442,6 @@
       ]
     },
     {
-      "Name": "Orchid",
-      "Version": "200.4.0.7938",
-      "ReferenceType": "Package",
-      "Nodes": [
-        "c893568635d7486aaa9a9abe9f131ab3",
-        "31fbabab24c74f4187f1869fd4541958",
-        "8913290dd82d4762a4245fc43b3b911f",
-        "2071f906ad424cfd88e980d265b068e0",
-        "7b1db93e7d6446459d45cd992c99c3fb",
-        "0d95f1c4c8414dddbc68294c55374a5c",
-        "d8a1729f01d840b798ab55353417255a"
-      ]
-    },
-    {
       "Name": "Clockwork for Dynamo 2.x",
       "Version": "2.4.0",
       "ReferenceType": "Package",
@@ -6460,6 +6455,19 @@
         "fc71baee59b1428f8b63d0837f055490",
         "e092741078f240fe859733951999f6d5",
         "a86e15aeb48f46ffa23402213d1a52cd"
+      ]
+    },
+    {
+      "Name": "Orchid",
+      "Version": "200.4.0.7938",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "31fbabab24c74f4187f1869fd4541958",
+        "8913290dd82d4762a4245fc43b3b911f",
+        "2071f906ad424cfd88e980d265b068e0",
+        "7b1db93e7d6446459d45cd992c99c3fb",
+        "0d95f1c4c8414dddbc68294c55374a5c",
+        "d8a1729f01d840b798ab55353417255a"
       ]
     },
     {
@@ -6489,7 +6497,7 @@
       "ScaleFactor": 100.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.3.2.15696",
+      "Version": "2.6.2.15705",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -6733,8 +6741,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2186.3607517074229,
-        "Y": -5492.2516871917878
+        "X": 2186.36075170742,
+        "Y": -5492.25168719179
       },
       {
         "ShowGeometry": false,
@@ -6753,18 +6761,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2186.3607517074229,
-        "Y": -5219.0432129651535
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "ViewType.ByName",
-        "Id": "c893568635d7486aaa9a9abe9f131ab3",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 2186.3607517074229,
-        "Y": -5302.0080939579211
+        "X": 2186.36075170742,
+        "Y": -5219.04321296515
       },
       {
         "ShowGeometry": false,
@@ -8055,11 +8053,21 @@
         "Excluded": false,
         "X": 11046.89052967633,
         "Y": -4367.9750324274664
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElementType.ByName",
+        "Id": "1f168e22db1c4491917ed20f25d922cb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2186.36075170742,
+        "Y": -5303.61348168171
       }
     ],
     "Annotations": [],
-    "X": 959.49943630262044,
-    "Y": 1020.4708371543377,
-    "Zoom": 0.084856838957640943
+    "X": 746.63049605448384,
+    "Y": 751.2037932439921,
+    "Zoom": 0.065423384050370986
   }
 }
