@@ -341,12 +341,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"Tipo de Visualización\";\n\n[\n\"Solido\",\n\"Lineal\"\n];\n\n[\ntrue,\nfalse\n];\n\n0;",
+      "Code": "\"Tipo de Visualización\";\n\n[\n\"Mostrar\",\n\"Esconder\"\n];\n\n[\ntrue,\nfalse\n];\n\n0;",
       "Id": "926bc292cca54958a0107e5e8a743428",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "32f9a5c7e5e34e86b2676712a644709a",
+          "Id": "5e40a71ab5c54deba5458a4d59ecafd6",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -355,7 +355,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2153c40e31194d9f92902d94da57ac73",
+          "Id": "440a7fed331548a29638fdd10ec7b7a4",
           "Name": "",
           "Description": "Value of expression at line 3",
           "UsingDefaultValue": false,
@@ -364,7 +364,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b6dd5a0956cf411d8b40d5176c1ebc35",
+          "Id": "970892d5e953456186df2c0628c0b79e",
           "Name": "",
           "Description": "Value of expression at line 8",
           "UsingDefaultValue": false,
@@ -373,7 +373,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "432420880c7248ddb5637b248b04ee49",
+          "Id": "a1849f8217fa440c87d99ffa5663478e",
           "Name": "",
           "Description": "Value of expression at line 13",
           "UsingDefaultValue": false,
@@ -508,9 +508,62 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "StructuralDesign.Rebar.Create.SetUnobscuredInView@Revit.Elements.Element,Revit.Elements.Views.View,bool",
+      "Id": "ac2640b9c86a47ae806f3bd993bd398b",
+      "Inputs": [
+        {
+          "Id": "8795d8f26f6b49b4a1bcc876a3ce2bdd",
+          "Name": "rebar",
+          "Description": "Rebar Element.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "08a54544a31f4a7cb542eb12ed09d915",
+          "Name": "view",
+          "Description": "The view element.\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "32dc45aa6c964f428ba10d7d7fbd7e10",
+          "Name": "unobscured",
+          "Description": "True if rebar is shown unobscured, false otherwise.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d5b708efed4c42a3ba3d100b13ec1642",
+          "Name": "Rebar",
+          "Description": "Rebar Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets this rebar element to be shown unobscured in a view.\n\nCreate.SetUnobscuredInView (rebar: Element, view: View, unobscured: bool = true): Element"
     }
   ],
   "Connectors": [
+    {
+      "Start": "d490fb867d124e46a1ad2b759a6c3bcd",
+      "End": "8795d8f26f6b49b4a1bcc876a3ce2bdd",
+      "Id": "6ba6201340424cbfb8a903449e8681dd"
+    },
     {
       "Start": "f578b5e4c41c4988a8927dd5e5569897",
       "End": "11c698f33d934aef8c9de0937bc735db",
@@ -520,6 +573,11 @@
       "Start": "f578b5e4c41c4988a8927dd5e5569897",
       "End": "279c198819b04205a1956aa692be5785",
       "Id": "b724e2ccf57844c7b09c41b83f40fca4"
+    },
+    {
+      "Start": "f578b5e4c41c4988a8927dd5e5569897",
+      "End": "08a54544a31f4a7cb542eb12ed09d915",
+      "Id": "e133aab770e0430a9a958ed0056a9d86"
     },
     {
       "Start": "dc2e1e5e9d9a44ec951f11c6cb875317",
@@ -539,27 +597,27 @@
     {
       "Start": "fdb32bcafabb41bb95e9275533d4a970",
       "End": "0ac153b3e1f44a4486aa90f2c2152359",
-      "Id": "85d8cad105a24805aacd6b4c03edf85f"
+      "Id": "d315697f6ec54ed8bba4ce142239a62e"
     },
     {
-      "Start": "32f9a5c7e5e34e86b2676712a644709a",
+      "Start": "5e40a71ab5c54deba5458a4d59ecafd6",
       "End": "9351615032ec434fa3cea5a8f98d2642",
-      "Id": "663730eff95e40d5bf6dbaa20943d8ce"
+      "Id": "2701dbc8abb24eb6af044592dbd6fdf7"
     },
     {
-      "Start": "2153c40e31194d9f92902d94da57ac73",
+      "Start": "440a7fed331548a29638fdd10ec7b7a4",
       "End": "299b42b01e164e1596043b979559d246",
-      "Id": "8fd1186a2c7e404cb1c3cd7c91b3629d"
+      "Id": "a1336e30a6104d4a8cf267a73a24dffd"
     },
     {
-      "Start": "b6dd5a0956cf411d8b40d5176c1ebc35",
+      "Start": "970892d5e953456186df2c0628c0b79e",
       "End": "f33dceb4083e43b8ba7aa8f4e8a9fe85",
-      "Id": "4dd656804f7146d78184e41f5024e5d7"
+      "Id": "90d96a414a834632a1ef24793d6f7716"
     },
     {
-      "Start": "432420880c7248ddb5637b248b04ee49",
+      "Start": "a1849f8217fa440c87d99ffa5663478e",
       "End": "2dace740a6e84a1ea2a1e71e8b830e11",
-      "Id": "745c0e845f1c4791b9c700692d69f521"
+      "Id": "d396deeda2734554992a36eb67056f51"
     },
     {
       "Start": "288517664e554b52ae0455ec7fab2ec5",
@@ -587,6 +645,11 @@
       "Id": "bed4f4604a3c45faad4d010d81aeb152"
     },
     {
+      "Start": "2b98f77d85584307a1a1754accde07c1",
+      "End": "32dc45aa6c964f428ba10d7d7fbd7e10",
+      "Id": "1ed7811fa4f942ec8e0d01618a3865a5"
+    },
+    {
       "Start": "308d156af72d4324b155ad5181cd54a8",
       "End": "675325ffe0d2478e8ae8505187a16adf",
       "Id": "686a99dcc35740a29f53388302459ba6"
@@ -602,7 +665,8 @@
       "Version": "2021.1.22",
       "ReferenceType": "Package",
       "Nodes": [
-        "e552428dedcf4d15813544373b10bdb1"
+        "e552428dedcf4d15813544373b10bdb1",
+        "ac2640b9c86a47ae806f3bd993bd398b"
       ]
     },
     {
@@ -653,7 +717,7 @@
         "Name": "Create.SetSolidInView",
         "ShowGeometry": true,
         "Excluded": false,
-        "X": 2463.9305990194239,
+        "X": 2476.9666106276854,
         "Y": 803.40543787154866
       },
       {
@@ -663,8 +727,8 @@
         "Name": "o|Document.ActiveView",
         "ShowGeometry": true,
         "Excluded": false,
-        "X": 2136.6672918777981,
-        "Y": 742.70500902612935
+        "X": 1989.1341211280073,
+        "Y": 701.39208477825161
       },
       {
         "Id": "fa18465dbef847709e71a264989c58d7",
@@ -673,8 +737,8 @@
         "Name": "All Elements of Category in View",
         "ShowGeometry": true,
         "Excluded": false,
-        "X": 2128.6672918777981,
-        "Y": 632.08840067697031
+        "X": 1981.1341211280073,
+        "Y": 590.77547642909258
       },
       {
         "Id": "3ef30253c10748e299654856b360c23a",
@@ -743,13 +807,23 @@
         "Name": "Categories ⁽ᶜᵒⁿᵛᵉʳᵗᵉᵈ ᵈʳᵒᵖᵈᵒʷⁿ⁾",
         "ShowGeometry": true,
         "Excluded": false,
-        "X": 1625.3852288887265,
-        "Y": 636.469602149732
+        "X": 1477.8520581389357,
+        "Y": 595.15667790185432
+      },
+      {
+        "Id": "ac2640b9c86a47ae806f3bd993bd398b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Create.SetUnobscuredInView",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 2735.8811602953351,
+        "Y": 671.15620048551341
       }
     ],
     "Annotations": [],
-    "X": -603.006595521947,
-    "Y": -553.36195209761638,
-    "Zoom": 0.96735596578640948
+    "X": -769.48854192838508,
+    "Y": -401.11868094745773,
+    "Zoom": 0.75867477981217679
   }
 }
