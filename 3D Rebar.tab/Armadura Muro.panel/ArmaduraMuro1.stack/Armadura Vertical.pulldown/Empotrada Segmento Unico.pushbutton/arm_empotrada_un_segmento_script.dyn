@@ -2,7 +2,7 @@
   "Uuid": "80faabf6-f70f-4792-99cd-042a275c1241",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "arm_empotrada_un_segmento",
+  "Name": "arm_empotrada_un_segmento_script",
   "ElementResolver": {
     "ResolutionMap": {
       "Strings": {
@@ -3473,7 +3473,7 @@
       "Id": "2b5f17e2163f40a1808913c4eaee58a9",
       "Inputs": [
         {
-          "Id": "3bd1b23d56464e0caa932f7a1f7eaf57",
+          "Id": "b1dcee59b42c4b8595264dfa2365bcf6",
           "Name": "t2",
           "Description": "t2",
           "UsingDefaultValue": false,
@@ -3484,7 +3484,7 @@
       ],
       "Outputs": [
         {
-          "Id": "413229a01f0b4871accfb3b2d52b7253",
+          "Id": "bd0c33c03fd943e4bfb87418eb434b16",
           "Name": "",
           "Description": "t1",
           "UsingDefaultValue": false,
@@ -3493,7 +3493,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e141b2a5a19c4f0492878d388a105385",
+          "Id": "208594cfa40e435d9cc3f7b6bbcacd13",
           "Name": "",
           "Description": "vector1",
           "UsingDefaultValue": false,
@@ -3502,7 +3502,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "a3808b2d00bb42fbb34b02bd998be4d4",
+          "Id": "86a3a7196d034190a048369307625ef0",
           "Name": "",
           "Description": "geometry1",
           "UsingDefaultValue": false,
@@ -3511,7 +3511,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "bb91d970446341329fb958ab09206d8c",
+          "Id": "59eaf5e0f3b641289fecdffa092b93f1",
           "Name": "",
           "Description": "point1",
           "UsingDefaultValue": false,
@@ -3520,7 +3520,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "fb532eb0337d4b8087479590ff253c43",
+          "Id": "2d85a36df1a94d17af1093611ebf0f1b",
           "Name": "",
           "Description": "vector2",
           "UsingDefaultValue": false,
@@ -3529,7 +3529,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "fe86f5b2af20437699221e43c698deeb",
+          "Id": "ce9a5dfc434e4c5c9a54fed78b3e1043",
           "Name": "",
           "Description": "plane1",
           "UsingDefaultValue": false,
@@ -3928,6 +3928,85 @@
       ],
       "Replication": "Disabled",
       "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "e5fa20e4-8f09-435e-a049-3762b18b9a42",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "590c670c86874d39bd9bca41d3929a3f",
+      "Inputs": [
+        {
+          "Id": "ac6f25c0438949578fcf7e5e7cfa932d",
+          "Name": "tag",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5fe1e5b482914c88a6a6fc64537de0e3",
+          "Name": "location",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "543dfada6aed416d9cc8186d46e724d1",
+          "Name": "Tag",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Moves the head of the tag to the given location point."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "eeaa61166efa49698eb33bbafe131675",
+      "Inputs": [
+        {
+          "Id": "35f8b7cf1dc8485c8b24320106804faf",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2a900ea41c034ae48f8b1fca6ec15b15",
+          "Name": "amt",
+          "Description": "Layers of nesting to remove.\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "468c3bad8cad4b26a47500c63baec539",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amt: int = -1): var[]..[]"
     }
   ],
   "Connectors": [
@@ -4502,24 +4581,34 @@
       "Id": "8ff144a8b1d342c08a5558562bb2e22a"
     },
     {
+      "Start": "ad206775a92641248767014f3156c7ad",
+      "End": "35f8b7cf1dc8485c8b24320106804faf",
+      "Id": "e47f2e0ca47b4ef488750c4b013ebd9b"
+    },
+    {
       "Start": "81d2b38d184b4310bce0f3fc9d9a393c",
       "End": "7b8b417d0f7a40b08c7b81ebc52b829f",
       "Id": "fecb0ac0a1324646aa6de6c3c38cd9d9"
     },
     {
       "Start": "fb064b3f050447d58461eafaf4ea6581",
-      "End": "3bd1b23d56464e0caa932f7a1f7eaf57",
-      "Id": "e1612fe5d3914f63b0a3431e6a15e005"
+      "End": "b1dcee59b42c4b8595264dfa2365bcf6",
+      "Id": "9e3ea7f7c897463a8a3cdd7c5dd0dbda"
     },
     {
-      "Start": "fe86f5b2af20437699221e43c698deeb",
+      "Start": "ce9a5dfc434e4c5c9a54fed78b3e1043",
       "End": "1c8cf66cae2a4de7b574947fa6d2ef8c",
-      "Id": "8c25935b752b463bb535c17851c77687"
+      "Id": "b2c2c0d595564231af275890ccde338a"
+    },
+    {
+      "Start": "c718b4a9f4d44278b20f272f0f8e6626",
+      "End": "78cb861884024a8e8f2205339720ee18",
+      "Id": "4eea90eb782549b596bdb9de7ffc9fd8"
     },
     {
       "Start": "6776096fbfb44468a1da1fdab6344c4a",
-      "End": "78cb861884024a8e8f2205339720ee18",
-      "Id": "0c5348a81e334aeab2c48504ab41d5cf"
+      "End": "5fe1e5b482914c88a6a6fc64537de0e3",
+      "Id": "6c7a05c986ab4e398cf8d966b050fd9f"
     },
     {
       "Start": "b408681c8a0e45798fa33ad065a227b6",
@@ -4555,6 +4644,11 @@
       "Start": "fab9f19567a94c269f80ad4020831900",
       "End": "1445292f77ca4475b068df041ca98a98",
       "Id": "72874511a9784757bcd0b76e151caa13"
+    },
+    {
+      "Start": "468c3bad8cad4b26a47500c63baec539",
+      "End": "ac6f25c0438949578fcf7e5e7cfa932d",
+      "Id": "660d82ff126b4951856216e3da2e8f68"
     }
   ],
   "Dependencies": [
@@ -4564,7 +4658,8 @@
     "7804e3b4-a95a-4ca5-a391-fd9d10566b40",
     "b409775c-5d88-4d47-96a3-5135c775d26a",
     "928e40a7-91ac-45c3-8d59-4d899fc49b83",
-    "ee3e4c3a-599a-4dba-af1f-57f58b08ce3d"
+    "ee3e4c3a-599a-4dba-af1f-57f58b08ce3d",
+    "e5fa20e4-8f09-435e-a049-3762b18b9a42"
   ],
   "NodeLibraryDependencies": [
     {
@@ -4595,7 +4690,8 @@
       "Version": "2021.11.10",
       "ReferenceType": "Package",
       "Nodes": [
-        "a2eb3b8cd5f24e39b6782de0ac0e141d"
+        "a2eb3b8cd5f24e39b6782de0ac0e141d",
+        "590c670c86874d39bd9bca41d3929a3f"
       ]
     },
     {
@@ -4619,15 +4715,15 @@
     },
     "Camera": {
       "Name": "Background Preview",
-      "EyeX": -30162.797536069556,
-      "EyeY": 18171.979187319339,
-      "EyeZ": 4208.5836946342151,
-      "LookX": 3268.5768329445564,
-      "LookY": -2671.979187319339,
-      "LookZ": -5033.16694658734,
-      "UpX": 0.22152465279005565,
-      "UpY": 0.91354545764260131,
-      "UpZ": -0.34111805145259666
+      "EyeX": 49517.933700522139,
+      "EyeY": 9055.4984092451632,
+      "EyeZ": 12478.946124018492,
+      "LookX": -756.9829635596252,
+      "LookY": -799.38824177955757,
+      "LookZ": -463.8797566778394,
+      "UpX": -0.57052763018017028,
+      "UpY": 0.74314482547739635,
+      "UpZ": -0.34961978143001587
     },
     "NodeViews": [
       {
@@ -5415,7 +5511,7 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Name": "Code Block",
-        "ShowGeometry": false,
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 15240.945875781523,
         "Y": 402.08377252126763
@@ -5469,11 +5565,31 @@
         "Excluded": false,
         "X": 10120.871697117653,
         "Y": 1370.8588745745685
+      },
+      {
+        "Id": "590c670c86874d39bd9bca41d3929a3f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Tag SetLocation",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 17171.458322796236,
+        "Y": 152.43232723157303
+      },
+      {
+        "Id": "eeaa61166efa49698eb33bbafe131675",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.Flatten",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 16880.636494323338,
+        "Y": 434.13348565743456
       }
     ],
     "Annotations": [],
-    "X": -1083.1000314979335,
-    "Y": -72.177895813301461,
-    "Zoom": 0.49195586737745411
+    "X": -4490.4531468886871,
+    "Y": 314.53261771388981,
+    "Zoom": 0.35748681769413448
   }
 }
