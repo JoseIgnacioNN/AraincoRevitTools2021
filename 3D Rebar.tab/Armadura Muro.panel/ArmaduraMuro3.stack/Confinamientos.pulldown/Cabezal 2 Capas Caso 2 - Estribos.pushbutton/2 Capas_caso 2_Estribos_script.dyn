@@ -2,7 +2,7 @@
   "Uuid": "cedfe471-ac2a-4df8-a561-0adafef63f54",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "4 barras_caso 2_trabas y estribos",
+  "Name": "2 Capas_caso 2_Estribos_script",
   "ElementResolver": {
     "ResolutionMap": {
       "Properties": {
@@ -2294,11 +2294,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "surface = x[1];\npoint_surf = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane = Autodesk.Plane.ByOriginNormal(point_surf, Autodesk.Vector.ZAxis());\ncurve_1 = DSCore.List.Flatten(Autodesk.Geometry.Intersect(surface, plane),2);\ncurve_rev = DesignScript.Curve.Reverse(curve_1);\ncurve_2 = DesignScript.Curve.ExtendEnd(curve_rev, -20);\ncurve_3 = DesignScript.Curve.ExtendStart(curve_2, -20);\ncurve_4 = Autodesk.Geometry.Translate(curve_3, surface_normal, -105);\nAutodesk.Plane.Normal(plane);",
+      "Code": "surface = x[1];\npoint_surf = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane = Autodesk.Plane.ByOriginNormal(point_surf, Autodesk.Vector.ZAxis());\ncurve_1 = DSCore.List.Flatten(Autodesk.Geometry.Intersect(surface, plane),2);\ncurve_rev = DesignScript.Curve.Reverse(curve_1);\ncurve_2 = DesignScript.Curve.ExtendEnd(curve_rev, -20);\ncurve_3 = DesignScript.Curve.ExtendStart(curve_2, -20);\ncurve_4 = Autodesk.Geometry.Translate(curve_3, surface_normal, -20);\nAutodesk.Plane.Normal(plane);",
       "Id": "f919b748841d4441a62e7da2347f537d",
       "Inputs": [
         {
-          "Id": "a4b13b5754574190a423dbc3c295b5cb",
+          "Id": "3dc4ae88a0e241b38fdd322bf9acdd62",
           "Name": "x",
           "Description": "x",
           "UsingDefaultValue": false,
@@ -2309,7 +2309,7 @@
       ],
       "Outputs": [
         {
-          "Id": "8261e9eab2ae41a5b8e4b9636e6ba1a5",
+          "Id": "7607d077614b4ada83d9f0b389cfd115",
           "Name": "",
           "Description": "surface",
           "UsingDefaultValue": false,
@@ -2318,7 +2318,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "dd8068cbb07d41d083a8600fab61ded9",
+          "Id": "707cd118bd6e44b4a37065fa89baac05",
           "Name": "",
           "Description": "point_surf",
           "UsingDefaultValue": false,
@@ -2327,7 +2327,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "59aed876bab748609333d9ec0e42f2d5",
+          "Id": "0bf0a8230e294421a155b0d8fcb6d128",
           "Name": "",
           "Description": "surface_normal",
           "UsingDefaultValue": false,
@@ -2336,7 +2336,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "69e42a7ae43744c0a82944fd6dd197f2",
+          "Id": "ff29d34b82d44558b02c39c33cd82786",
           "Name": "",
           "Description": "plane",
           "UsingDefaultValue": false,
@@ -2345,7 +2345,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8efb8ce9852342358a9f0593f1c3eb29",
+          "Id": "24fbe66940d747f493a60bae2cd86607",
           "Name": "",
           "Description": "curve_1",
           "UsingDefaultValue": false,
@@ -2354,7 +2354,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "13f8ce8bce2740b6a60c845437cdaca8",
+          "Id": "1fde202678df40caa1c5a4c06c62026e",
           "Name": "",
           "Description": "curve_rev",
           "UsingDefaultValue": false,
@@ -2363,7 +2363,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "784fc3bc1e384c56aebd264319a7d955",
+          "Id": "568ba9c455e34a7faac1b9b52cc2e172",
           "Name": "",
           "Description": "curve_2",
           "UsingDefaultValue": false,
@@ -2372,7 +2372,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "72e32226382242e29e2239e0fbac4d9c",
+          "Id": "b7e7aea3379748339453ee64a3e59c3f",
           "Name": "",
           "Description": "curve_3",
           "UsingDefaultValue": false,
@@ -2381,7 +2381,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "00e311421b0944d1ad9cbf5b3a204cbf",
+          "Id": "778d4d01ea7c422ba3511ae15b0cf003",
           "Name": "",
           "Description": "curve_4",
           "UsingDefaultValue": false,
@@ -2390,7 +2390,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2fd389467b9d4d14814be829eba78d45",
+          "Id": "c4e025b817494e47a29f11c54c97fbda",
           "Name": "",
           "Description": "Value of expression at line 10",
           "UsingDefaultValue": false,
@@ -2742,11 +2742,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "plane_1;\ncurve_1;\nvector_1;\ncurve_2 = DesignScript.Curve.PullOntoPlane(curve_1, plane_1);\ncurve_3 = Autodesk.Geometry.Translate(curve_2, vector_1, 90);\nDSCore.List.Flatten([curve_2, curve_3], 2);",
+      "Code": "plane_1;\ncurve_1;\nvector_1;\ncurve_2 = DesignScript.Curve.PullOntoPlane(curve_1, plane_1);\ncurve_3 = Autodesk.Geometry.Translate(curve_2, vector_1, -90);\nDSCore.List.Flatten([curve_2, curve_3], 2);",
       "Id": "38c0131061a74749b0799a284def1653",
       "Inputs": [
         {
-          "Id": "1fd6767b08514001a2e9614197568174",
+          "Id": "662ba6a698694d76ae225ca3f535c69f",
           "Name": "plane_1",
           "Description": "plane_1",
           "UsingDefaultValue": false,
@@ -2755,7 +2755,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "7a74622b097f4fd8a7cdc87367694b89",
+          "Id": "d6a9a0610ad54f1ba2898f1c761cd6f0",
           "Name": "curve_1",
           "Description": "curve_1",
           "UsingDefaultValue": false,
@@ -2764,7 +2764,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5c2f19e3584a48e1ae6e14bbf6ec76ef",
+          "Id": "8d6b458da9f2468380bca975da0c96f2",
           "Name": "vector_1",
           "Description": "vector_1",
           "UsingDefaultValue": false,
@@ -2775,7 +2775,7 @@
       ],
       "Outputs": [
         {
-          "Id": "8a0ccefb0c8f4c10a10c099c63ec7fbe",
+          "Id": "b06876c649164a2a8e4c70a202da04a5",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -2784,7 +2784,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "39dc7a987cfe4e8daa4a0cd9da87774f",
+          "Id": "9b84eb6a854c4eefa09e15e79af41142",
           "Name": "",
           "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
@@ -2793,7 +2793,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1e99ac85285b473385c4dab06ef0c669",
+          "Id": "69a905841712496680c03f2cd82f8c52",
           "Name": "",
           "Description": "Value of expression at line 3",
           "UsingDefaultValue": false,
@@ -2802,7 +2802,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "21cd590343534e349e090ded3aa5e48e",
+          "Id": "86316829cfd8411dba7d33b782acf8c6",
           "Name": "",
           "Description": "curve_2",
           "UsingDefaultValue": false,
@@ -2811,7 +2811,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b2058abeee764189a1b1dbb72c367955",
+          "Id": "f7af7664a5f741b58a36737874b6c21c",
           "Name": "",
           "Description": "curve_3",
           "UsingDefaultValue": false,
@@ -2820,7 +2820,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e7a8a2bc9b274d2dbfa5587f1f570cbf",
+          "Id": "c3233d87718441ebaaf045d51e25b94d",
           "Name": "",
           "Description": "Value of expression at line 6",
           "UsingDefaultValue": false,
@@ -2896,8 +2896,8 @@
     },
     {
       "Start": "778d8158b0834b4c9df709458ea48d12",
-      "End": "a4b13b5754574190a423dbc3c295b5cb",
-      "Id": "185447a4468d4df7af839d195566a69c"
+      "End": "3dc4ae88a0e241b38fdd322bf9acdd62",
+      "Id": "bda24a5f13c94267a1ba338cab17afed"
     },
     {
       "Start": "e3a6e4c563ac446d8e3e33e01e3c7885",
@@ -3041,8 +3041,8 @@
     },
     {
       "Start": "bc699aa3d1994e28a718c27b0e69203b",
-      "End": "1fd6767b08514001a2e9614197568174",
-      "Id": "43f86e4145474e319f0905afa2ed2ea3"
+      "End": "662ba6a698694d76ae225ca3f535c69f",
+      "Id": "731991eefca1408abf52e10f4b7d1ef7"
     },
     {
       "Start": "ba77e58db1964f8cac94f46e243e1a4b",
@@ -3230,19 +3230,19 @@
       "Id": "b12355c9dc4e4c7fbecf01706d4c7ccf"
     },
     {
-      "Start": "59aed876bab748609333d9ec0e42f2d5",
-      "End": "5c2f19e3584a48e1ae6e14bbf6ec76ef",
-      "Id": "3af81769f8cc4355bfd76b75a1706f0b"
+      "Start": "0bf0a8230e294421a155b0d8fcb6d128",
+      "End": "8d6b458da9f2468380bca975da0c96f2",
+      "Id": "a8160658de364519ba3630e31d7be157"
     },
     {
-      "Start": "00e311421b0944d1ad9cbf5b3a204cbf",
-      "End": "7a74622b097f4fd8a7cdc87367694b89",
-      "Id": "cae3df0b518546b3a341fd1413860403"
+      "Start": "778d4d01ea7c422ba3511ae15b0cf003",
+      "End": "d6a9a0610ad54f1ba2898f1c761cd6f0",
+      "Id": "dd558bc500c245748b5096ff4c8fd15e"
     },
     {
-      "Start": "2fd389467b9d4d14814be829eba78d45",
+      "Start": "c4e025b817494e47a29f11c54c97fbda",
       "End": "2a23cb1e12a54e4eb352b5342de65708",
-      "Id": "efcacf8417df41d6aec23824adefd527"
+      "Id": "d59466e8e91947ba9f5668c8c4da45af"
     },
     {
       "Start": "b215df43a911429fa895cfec83eb012e",
@@ -3295,9 +3295,9 @@
       "Id": "c5d95455d5d7456f90314132353c19c2"
     },
     {
-      "Start": "e7a8a2bc9b274d2dbfa5587f1f570cbf",
+      "Start": "c3233d87718441ebaaf045d51e25b94d",
       "End": "b2f611c57db744b08461b670347bf51a",
-      "Id": "3c1db079137e43d881a1f1cd6af02b0c"
+      "Id": "768bafae8497417a90c15aed2af07076"
     }
   ],
   "Dependencies": [
@@ -3945,8 +3945,8 @@
       }
     ],
     "Annotations": [],
-    "X": -6962.989921194192,
-    "Y": -4815.1283434624147,
-    "Zoom": 1.8590050543743735
+    "X": -139.43881668616984,
+    "Y": -30.638992662457753,
+    "Zoom": 0.16363897456755661
   }
 }
