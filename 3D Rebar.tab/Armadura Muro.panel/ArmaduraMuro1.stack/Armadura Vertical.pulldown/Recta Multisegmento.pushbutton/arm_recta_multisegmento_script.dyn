@@ -5944,6 +5944,83 @@
       ],
       "Replication": "Disabled",
       "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Override Hook Lengths\";\n1;",
+      "Id": "7aa103468fca4286b73052bae0c2056f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b4b0504c96bb46d5b22a404106eac58e",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "08d9d95dc6d74c2e9f8894120badc599",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.SetParameterByName@string,var",
+      "Id": "aaf7fa40a043415f86291e973f61390b",
+      "Inputs": [
+        {
+          "Id": "5c7c66cec5654a36b9c7b5dc2a9962f3",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c0a5eacdb4e04a62b581f4492500a27f",
+          "Name": "parameterName",
+          "Description": "The name of the parameter to set.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8a037ebbf91b4baeba0540331e011858",
+          "Name": "value",
+          "Description": "The value.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "98539c48cb7b4e07b971079cd72ce6a8",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set one of the element's parameters.\n\nElement.SetParameterByName (parameterName: string, value: var): Element"
     }
   ],
   "Connectors": [
@@ -6574,18 +6651,8 @@
     },
     {
       "Start": "04afb1d8778c418e957ececbfee57d7d",
-      "End": "9dcc7f6ff0374d29b65bab9c21de729d",
-      "Id": "963f083572384c2eacf12b4264ea96b5"
-    },
-    {
-      "Start": "04afb1d8778c418e957ececbfee57d7d",
-      "End": "113ac73328e44617bcaf148b21d361ec",
-      "Id": "8b7abb1d36ae486c95cf07f104e5b2fe"
-    },
-    {
-      "Start": "04afb1d8778c418e957ececbfee57d7d",
-      "End": "e608cfb12c1649c9af039771b4f85b24",
-      "Id": "57ff54c527f841699baf9c8c44f93b89"
+      "End": "5c7c66cec5654a36b9c7b5dc2a9962f3",
+      "Id": "7553e0bb9ad0462883418d472d53eae7"
     },
     {
       "Start": "f4f2fec0afd04cb1b3ff6d98f54f2b3e",
@@ -6906,6 +6973,31 @@
       "Start": "0a5cd629ecce4195a27543a70751a340",
       "End": "b4a27b0b48b44de6b6b793713482c29c",
       "Id": "c95ab18d834b4e8890679e4496ae7ee4"
+    },
+    {
+      "Start": "b4b0504c96bb46d5b22a404106eac58e",
+      "End": "c0a5eacdb4e04a62b581f4492500a27f",
+      "Id": "20d5c762057f4cdd806852847962cc29"
+    },
+    {
+      "Start": "08d9d95dc6d74c2e9f8894120badc599",
+      "End": "8a037ebbf91b4baeba0540331e011858",
+      "Id": "0b00524594f942d7aeccacb42dd176dc"
+    },
+    {
+      "Start": "98539c48cb7b4e07b971079cd72ce6a8",
+      "End": "9dcc7f6ff0374d29b65bab9c21de729d",
+      "Id": "7ea58fd041b74a049de24fdefe0b67ca"
+    },
+    {
+      "Start": "98539c48cb7b4e07b971079cd72ce6a8",
+      "End": "113ac73328e44617bcaf148b21d361ec",
+      "Id": "e68abf146b444bc694d69dbabaac50a7"
+    },
+    {
+      "Start": "98539c48cb7b4e07b971079cd72ce6a8",
+      "End": "e608cfb12c1649c9af039771b4f85b24",
+      "Id": "0d9d1fd79d644b42843f2395816dff94"
     }
   ],
   "Dependencies": [
@@ -8354,11 +8446,31 @@
         "Excluded": false,
         "X": 5968.5149663980119,
         "Y": 695.52901463600551
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Code Block",
+        "Id": "7aa103468fca4286b73052bae0c2056f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 17134.658579344388,
+        "Y": 2352.4497016688488
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Element.SetParameterByName",
+        "Id": "aaf7fa40a043415f86291e973f61390b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 17134.658579344388,
+        "Y": 2214.7302472009783
       }
     ],
     "Annotations": [],
-    "X": -7915.5946376611355,
-    "Y": -2467.8787504537449,
-    "Zoom": 2.1235954143985039
+    "X": -23.10752299880285,
+    "Y": 533.95395453501169,
+    "Zoom": 0.092724980280116484
   }
 }
