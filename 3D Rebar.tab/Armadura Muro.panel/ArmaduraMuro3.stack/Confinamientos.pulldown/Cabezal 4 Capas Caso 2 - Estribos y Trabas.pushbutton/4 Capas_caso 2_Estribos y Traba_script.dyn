@@ -544,12 +544,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"Confinamiento Cabezal 3 Capas\\nTipo 2 - Estribos y Traba\";",
+      "Code": "\"Confinamiento Cabezal 4 Capas\\nTipo 2 - Estribos y Traba\";",
       "Id": "74fd89de76b64f02a6a594846717245c",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "2cb53f05eb2b4c89ab2af578acfccd30",
+          "Id": "ac3c3745a92c447695558c2425425fbe",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -3577,6 +3577,141 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "surface_normal;\npoint_1 = DesignScript.Curve.PointAtParameter(curve_1, 0.5);\ntag_estribo = Autodesk.Geometry.Translate(point_1, surface_normal, 130);\ntag_traba = Autodesk.Geometry.Translate(point_1, surface_normal, 330);",
+      "Id": "9c9cf8b458f5461a96077388430718bc",
+      "Inputs": [
+        {
+          "Id": "31e45a4f3dd449b5a55e6f40cf12db22",
+          "Name": "surface_normal",
+          "Description": "surface_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "50540b39aa8e49ddbe8270a887d4fea3",
+          "Name": "curve_1",
+          "Description": "curve_1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a68da1ff88484f19969ccc38a8714303",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "41eeec5a8975451684f9778155f3d976",
+          "Name": "",
+          "Description": "point_1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d6fb2352b14748a6b5b07e98f3a8ba4d",
+          "Name": "",
+          "Description": "tag_estribo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cb69d01fe45446d9a7089086f4bd3254",
+          "Name": "",
+          "Description": "tag_traba",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "surface = x[1];\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);",
+      "Id": "2be601c534244bbab4269bddd550b161",
+      "Inputs": [
+        {
+          "Id": "670413f5afb0472586c6ae79135e518f",
+          "Name": "x",
+          "Description": "x",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b571d05191174cd1a2ff2b7f1b9ab2da",
+          "Name": "",
+          "Description": "surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2167502095d34f9bb535dd3ff994f67b",
+          "Name": "",
+          "Description": "surface_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Id": "35b35188c0af45c0843fbdf6f44b8c14",
+      "Inputs": [
+        {
+          "Id": "714bfe22bb0148e19e78c038fbcf4186",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b0c9e66c6dae49d79a16efee057243dd",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
     }
   ],
   "Connectors": [
@@ -3646,6 +3781,11 @@
       "Id": "c6327409003f4d4dbbc0b514eb964922"
     },
     {
+      "Start": "778d8158b0834b4c9df709458ea48d12",
+      "End": "670413f5afb0472586c6ae79135e518f",
+      "Id": "2aa78f1f1bda4c47b7738ba13a062def"
+    },
+    {
       "Start": "e3a6e4c563ac446d8e3e33e01e3c7885",
       "End": "158ab6ece61b4773bd475c1e0e04c7af",
       "Id": "c7287629258a46b7bb902dacec38e673"
@@ -3666,9 +3806,9 @@
       "Id": "9aa13118b23d4ed490851898f2ab44d4"
     },
     {
-      "Start": "2cb53f05eb2b4c89ab2af578acfccd30",
+      "Start": "ac3c3745a92c447695558c2425425fbe",
       "End": "adfc8e1e4dae4611b08e8634d6ca4a13",
-      "Id": "1f12565895224db5b039e8e55b170caf"
+      "Id": "0c8f2175badc4a66807eecc6accea532"
     },
     {
       "Start": "e0344d49ba744370aff22aa8ae8c8b29",
@@ -3774,6 +3914,11 @@
       "Start": "2710c71cb61546aa9a633629a0b77947",
       "End": "24ea80d5fe1a4a709b2bc4857a27aca4",
       "Id": "c2ec3693691b48c7896d276643f439aa"
+    },
+    {
+      "Start": "2710c71cb61546aa9a633629a0b77947",
+      "End": "50540b39aa8e49ddbe8270a887d4fea3",
+      "Id": "603dc815de39471982b7884adc464824"
     },
     {
       "Start": "e366a0510dd54b9eab4dcfef66b0433d",
@@ -3956,16 +4101,6 @@
       "Id": "9f5b8b4563d64a5089172d98b2f8b919"
     },
     {
-      "Start": "0e85dca52ab64c9f8a7e8f6c00285574",
-      "End": "d317448a24564d738fb6fd57260c258a",
-      "Id": "6c1b30465ce04192a73c0ec43ebd6cb4"
-    },
-    {
-      "Start": "0e85dca52ab64c9f8a7e8f6c00285574",
-      "End": "a54e017642aa4ff8a8f39307f749c301",
-      "Id": "a05c18022cfd40609f9575462165f062"
-    },
-    {
       "Start": "e9c856b593a449ee80a9e7d9738829d9",
       "End": "c087ac88b7c847229d13b0f892546d9a",
       "Id": "bf2899d705d547aeb8d354116f0654da"
@@ -4117,8 +4252,8 @@
     },
     {
       "Start": "cdff2e28682949178adf5f5ffeaa8271",
-      "End": "bdd07f6a78114c38b74c16395579acdc",
-      "Id": "edf2988df2ee452d90fe9c557a56f171"
+      "End": "714bfe22bb0148e19e78c038fbcf4186",
+      "Id": "4103df5c6185490a86f287223169daf7"
     },
     {
       "Start": "f8544084bbe145ceb736adae64bb3788",
@@ -4199,6 +4334,26 @@
       "Start": "b500c9cd562849e290bc2d604e868a2c",
       "End": "b834533f4e9e45b093ecb310a432c087",
       "Id": "f2c7cd119a3049b19426ecf2bb2008cc"
+    },
+    {
+      "Start": "d6fb2352b14748a6b5b07e98f3a8ba4d",
+      "End": "d317448a24564d738fb6fd57260c258a",
+      "Id": "c64cd0c45350413bb3447b66d06e99ae"
+    },
+    {
+      "Start": "cb69d01fe45446d9a7089086f4bd3254",
+      "End": "a54e017642aa4ff8a8f39307f749c301",
+      "Id": "91d4f8cd7aad46b1830843607c999feb"
+    },
+    {
+      "Start": "2167502095d34f9bb535dd3ff994f67b",
+      "End": "31e45a4f3dd449b5a55e6f40cf12db22",
+      "Id": "3feac92b55e645c5a3c282d25e00dde3"
+    },
+    {
+      "Start": "b0c9e66c6dae49d79a16efee057243dd",
+      "End": "bdd07f6a78114c38b74c16395579acdc",
+      "Id": "89bf815afe40480cbb2ffcae197c3c82"
     }
   ],
   "Dependencies": [
@@ -4895,8 +5050,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 15304.251044791616,
-        "Y": 4516.0576672698107
+        "X": 15304.2510447916,
+        "Y": 4516.05766726981
       },
       {
         "ShowGeometry": false,
@@ -4967,6 +5122,36 @@
         "Excluded": false,
         "X": 13111.576990880241,
         "Y": 4881.8093105919152
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Code Block",
+        "Id": "9c9cf8b458f5461a96077388430718bc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 9277.0519201251464,
+        "Y": 1903.8013399665117
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Code Block",
+        "Id": "2be601c534244bbab4269bddd550b161",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7029.6622821352867,
+        "Y": 1884.9808697798819
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FirstItem",
+        "Id": "35b35188c0af45c0843fbdf6f44b8c14",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 15406.2510447916,
+        "Y": 4429.82960980453
       }
     ],
     "Annotations": [],
