@@ -10855,7 +10855,7 @@
       "Id": "da1ed780a4af4f76bd4275deaf0ea948",
       "Inputs": [
         {
-          "Id": "3cacdde9f7dc4d1b9d5509f24d35f67f",
+          "Id": "2b1da5eef03348dfb87afad4ca6124c1",
           "Name": "rebar_bar_type",
           "Description": "rebar_bar_type",
           "UsingDefaultValue": false,
@@ -10866,7 +10866,7 @@
       ],
       "Outputs": [
         {
-          "Id": "d351f92b98b1454682b3977f5d4eafbe",
+          "Id": "4ac1c7df0b9d465d8c2a963d504397af",
           "Name": "",
           "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
@@ -10875,7 +10875,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "ad76b0eeb3f148d7a26239635d1da87b",
+          "Id": "0a199e1521a04337ac90a413c2ff7629",
           "Name": "",
           "Description": "Value of expression at line 4",
           "UsingDefaultValue": false,
@@ -10884,7 +10884,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "34596bc5feb44de0b47e70a925e44261",
+          "Id": "98ca295cab3a4e2ca60293ec9e2e7e9d",
           "Name": "",
           "Description": "Value of expression at line 6",
           "UsingDefaultValue": false,
@@ -10893,7 +10893,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "bc7dc784dadc475fba1a42156debeedf",
+          "Id": "0a64c23ab5cd4b2b892bdd6c0dbe7838",
           "Name": "",
           "Description": "Value of expression at line 8",
           "UsingDefaultValue": false,
@@ -14859,11 +14859,11 @@
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
       "Code": "//Rebar Hook Type;\nRevit.Elements.ElementSelector.ByElementId(619897);",
-      "Id": "962a7f4a15664ad5a80631537dd80314",
+      "Id": "b6ac42b579f147ea9d27f33fcf0d0a5a",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "e66709a6ad6845c393fd65fb3a06b639",
+          "Id": "324c0b6caec64b76ace63c6997435a29",
           "Name": "",
           "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
@@ -14878,14 +14878,118 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "//Rebar Hook Type;\nRevit.Elements.ElementSelector.ByElementId(619897);",
-      "Id": "b6ac42b579f147ea9d27f33fcf0d0a5a",
+      "Code": "DSCore.Types.FindTypeByNameInAssembly(\"RebarHookType\", \"RevitAPI\");",
+      "Id": "5b7ee9bdbc04492f8ca1f6583a649766",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "324c0b6caec64b76ace63c6997435a29",
+          "Id": "9db70f7022de4b28ba473f92ecbd4518",
           "Name": "",
-          "Description": "Value of expression at line 2",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "05a5e415632f4c49a97d3db608a9a785",
+      "Inputs": [
+        {
+          "Id": "e382ae47303f4077bd58f2ee987f59b7",
+          "Name": "element type",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "483c2de8ab4144a1b891a69482bf41d7",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given type."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "t1 = t3;\nstr2 = Revit.Elements.Element.Name(t1);\nt2 = str2 == \"Standard - 90 deg.\";\nt4 = DSCore.List.FilterByBoolMask(t3, t2);\nt5 = Dictionary.ValueAtKey(t4, \"in\");\nt6 = Dictionary.ValueAtKey(t4, \"out\");",
+      "Id": "f76d7aec423249f09760c420af4538da",
+      "Inputs": [
+        {
+          "Id": "2b40380ba89d43709e78d8b856a2616b",
+          "Name": "t3",
+          "Description": "t3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6fa10021f25a410f9f16602d246a9210",
+          "Name": "",
+          "Description": "t1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "df3ad3f55c3440dab67a92082c334c02",
+          "Name": "",
+          "Description": "str2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5297206e1e44402d8622e833abb4f0cd",
+          "Name": "",
+          "Description": "t2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a03a4009c6bc4ff395b72909be8bc7c0",
+          "Name": "",
+          "Description": "t4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "09a715a2dea14ccc82b8eb7841ada62e",
+          "Name": "",
+          "Description": "t5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f64ebf10e9ab47e8b9c802de964500b8",
+          "Name": "",
+          "Description": "t6",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -16743,27 +16847,27 @@
       "Id": "9958fe78da5a4564b1deea85fcd4e72b"
     },
     {
-      "Start": "d351f92b98b1454682b3977f5d4eafbe",
+      "Start": "4ac1c7df0b9d465d8c2a963d504397af",
       "End": "875511f32fd64134a5fb222372f73832",
       "Id": "83067cdb6ce64db081cc598a29727308"
     },
     {
-      "Start": "ad76b0eeb3f148d7a26239635d1da87b",
+      "Start": "0a199e1521a04337ac90a413c2ff7629",
       "End": "992399f5b57047809b24e21ad5378d73",
       "Id": "290f245a1b0342d4882d7772a2e2ec04"
     },
     {
-      "Start": "ad76b0eeb3f148d7a26239635d1da87b",
+      "Start": "0a199e1521a04337ac90a413c2ff7629",
       "End": "d5f1af8937ce4197bb4b3bb51f962ae3",
       "Id": "725cb1f47f414d9cb4d4b11c5c4a25d5"
     },
     {
-      "Start": "34596bc5feb44de0b47e70a925e44261",
+      "Start": "98ca295cab3a4e2ca60293ec9e2e7e9d",
       "End": "af917bcdb89445afa848f8b2f50b0f7b",
       "Id": "43bab5c8ad5544999e28284746e1badb"
     },
     {
-      "Start": "bc7dc784dadc475fba1a42156debeedf",
+      "Start": "0a64c23ab5cd4b2b892bdd6c0dbe7838",
       "End": "0b0d8eed684b4e65ba5add03a3ac0c27",
       "Id": "75362c888f8448f89cf5339ed624b3c0"
     },
@@ -16864,13 +16968,13 @@
     },
     {
       "Start": "994174d0602b486187ceb691eb4eaf05",
-      "End": "3cacdde9f7dc4d1b9d5509f24d35f67f",
-      "Id": "8a1977e293ee4e70bb70431ed24ac105"
+      "End": "231d92ad909f489aae1d051d3da040ca",
+      "Id": "2108d7dd5ef6433f9e5f480716f026a1"
     },
     {
       "Start": "994174d0602b486187ceb691eb4eaf05",
-      "End": "231d92ad909f489aae1d051d3da040ca",
-      "Id": "2108d7dd5ef6433f9e5f480716f026a1"
+      "End": "2b1da5eef03348dfb87afad4ca6124c1",
+      "Id": "8a1977e293ee4e70bb70431ed24ac105"
     },
     {
       "Start": "81950d9705bf475aa691c97a66e0439f",
@@ -17373,14 +17477,24 @@
       "Id": "21d867599fbd4ba488f90aaccf06e251"
     },
     {
-      "Start": "e66709a6ad6845c393fd65fb3a06b639",
-      "End": "69a140c7e0594c618abd6ecb8a7182d2",
-      "Id": "87be562dcecb463692e3c3413b0d4a3d"
-    },
-    {
       "Start": "324c0b6caec64b76ace63c6997435a29",
       "End": "782b6f3924e44cc08522a877f4d7fc5b",
       "Id": "d399c7b0ad3a4c34997afbbec432e096"
+    },
+    {
+      "Start": "9db70f7022de4b28ba473f92ecbd4518",
+      "End": "e382ae47303f4077bd58f2ee987f59b7",
+      "Id": "7fa234ff2b2148f794c567e7e92496c2"
+    },
+    {
+      "Start": "483c2de8ab4144a1b891a69482bf41d7",
+      "End": "2b40380ba89d43709e78d8b856a2616b",
+      "Id": "747633a12bbf475896202587b7ce7b19"
+    },
+    {
+      "Start": "09a715a2dea14ccc82b8eb7841ada62e",
+      "End": "69a140c7e0594c618abd6ecb8a7182d2",
+      "Id": "61a5f92e10fa4aefb5101fa6241596e0"
     }
   ],
   "Dependencies": [
@@ -20350,8 +20464,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 12033.210511330393,
-        "Y": -4046.2710914894633
+        "X": 12033.2105113304,
+        "Y": -4046.27109148946
       },
       {
         "ShowGeometry": false,
@@ -21386,27 +21500,47 @@
       {
         "ShowGeometry": false,
         "Name": "Code Block",
-        "Id": "962a7f4a15664ad5a80631537dd80314",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 11894.528330509425,
-        "Y": -3841.8061733583504
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "Code Block",
         "Id": "b6ac42b579f147ea9d27f33fcf0d0a5a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": 11288.980916374585,
         "Y": -6956.316204613252
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Element Types ⁽ᶜᵒⁿᵛᵉʳᵗᵉᵈ ᵈʳᵒᵖᵈᵒʷⁿ⁾",
+        "Id": "5b7ee9bdbc04492f8ca1f6583a649766",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 11765.2105113304,
+        "Y": -3560.00907559331
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "All Elements of Type",
+        "Id": "05a5e415632f4c49a97d3db608a9a785",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 12169.2105113304,
+        "Y": -3658.00907559331
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Rebar Hook Type at Start",
+        "Id": "f76d7aec423249f09760c420af4538da",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 11948.2105113304,
+        "Y": -3838.00907559331
       }
     ],
     "Annotations": [],
-    "X": 557.64180248604487,
-    "Y": 688.432094141244,
-    "Zoom": 0.073332166615575442
+    "X": -8969.4477438087433,
+    "Y": 3609.9315010700607,
+    "Zoom": 0.79476649356865914
   }
 }
