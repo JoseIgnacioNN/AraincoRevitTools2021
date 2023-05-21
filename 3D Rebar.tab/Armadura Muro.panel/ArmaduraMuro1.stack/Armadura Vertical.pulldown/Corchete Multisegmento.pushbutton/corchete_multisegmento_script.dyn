@@ -309,108 +309,6 @@
       "Description": "Runs an embedded IronPython script."
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "view_plane;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\nelem_geom_union = Autodesk.Solid.ByUnion(elem_geom_scaled);",
-      "Id": "1630ae1146a349a28d17801884794ae9",
-      "Inputs": [
-        {
-          "Id": "09b6637b3f7a4516bc560f41e6ab825d",
-          "Name": "view_plane",
-          "Description": "view_plane",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "560239dee077431f844bb2c4d050b3a8",
-          "Name": "muros",
-          "Description": "muros",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "03633b2c52c44f8199981e8b8dce7db2",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "ff77cd761be246e49103b9357576f374",
-          "Name": "",
-          "Description": "view_plane_normal",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "cfc41d4a28264843a1a34d8f94b5af83",
-          "Name": "",
-          "Description": "elem_geom",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "e02ad2972c7a4788a6df629385046b76",
-          "Name": "",
-          "Description": "elem_geom_flat",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "b48626aaf9b1499bbc994cb771b1b5f1",
-          "Name": "",
-          "Description": "centroid_geom",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "e0319f2b3ee04a9e82224db7e22a53c5",
-          "Name": "",
-          "Description": "plane",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d0a6ee0406494e5483874f8c9886aae4",
-          "Name": "",
-          "Description": "elem_geom_scaled",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "2a7aa5f90aa8438b95ff1cedf5caeb3c",
-          "Name": "",
-          "Description": "elem_geom_union",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Translate@Autodesk.DesignScript.Geometry.Vector,double",
@@ -1149,11 +1047,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "t1 = Revit.Elements.Element.GetParameterValueByName(t2, \"Type\");\nt3 = Revit.Elements.Element.GetParameterValueByName(t1, \"Width\");\nt4 = t3 - 80;",
+      "Code": "t1 = Revit.Elements.Element.GetParameterValueByName(t2[0], \"Type\");\nt3 = Revit.Elements.Element.GetParameterValueByName(t1, \"Width\");\nt4 = t3 - 80;",
       "Id": "ebda692caaba40158c67fff50437b261",
       "Inputs": [
         {
-          "Id": "e987b81345734d16a1ec34b90788ae46",
+          "Id": "fbaf7b7a06cb48d3a2e1cdcfee3ad838",
           "Name": "t2",
           "Description": "t2",
           "UsingDefaultValue": false,
@@ -1164,7 +1062,7 @@
       ],
       "Outputs": [
         {
-          "Id": "aca27be89f3c4502bab4bcfb8ddd28c1",
+          "Id": "5a1ede5bc55c4de1a8a5538d447821ca",
           "Name": "",
           "Description": "t1",
           "UsingDefaultValue": false,
@@ -1173,7 +1071,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "13018ceb182c4c2787e0d2b08fd370cb",
+          "Id": "7117efbde89b49d5abdfa2b3653a7eb0",
           "Name": "",
           "Description": "t3",
           "UsingDefaultValue": false,
@@ -1182,7 +1080,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2b6b20a4196c43b2a68babd6c54cdc96",
+          "Id": "39868c571b0e48edaae5254d29b021e2",
           "Name": "",
           "Description": "t4",
           "UsingDefaultValue": false,
@@ -7475,11 +7373,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "view_plane;\ncurve;\npoints;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\n\n\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\ncurve_splited = Autodesk.Curve.SplitByPoints(curve, points);\npoint_at_param = Autodesk.Curve.PointAtParameter(curve_splited, 0.1);\nbool_intersect =Autodesk.Geometry.DoesIntersect(elem_geom_scaled@L1<1L>, point_at_param@L2<1L>);\nmask = Orchid.List.AnyTrue(bool_intersect);\nhost_elem = DSCore.List.FilterByBoolMask(muros, mask)[\"in\"];",
+      "Code": "view_plane;\ncurve;\npoints;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\nmuros;\n\n\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\ncurve_splited = Autodesk.Curve.SplitByPoints(curve, points);\npoint_at_param = Autodesk.Curve.PointAtParameter(curve_splited, 0.1);\nbool_intersect =Autodesk.Geometry.DoesIntersect(elem_geom_scaled@L1<1L>, point_at_param@L2<1L>);\nmask = Orchid.List.AnyTrue(bool_intersect);\nhost_elem = DSCore.List.FilterByBoolMask(muros, mask)[\"in\"];",
       "Id": "c4ba7cefbc254e23b07ec22dc3a168e2",
       "Inputs": [
         {
-          "Id": "e15e9dd17e9640e88658bb6f47023d11",
+          "Id": "f86f182186e748d0b0d181dc3c957d89",
           "Name": "view_plane",
           "Description": "view_plane",
           "UsingDefaultValue": false,
@@ -7488,7 +7386,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5aa8367917ef4c5e8853b31d18d1a2f8",
+          "Id": "a11a2df5812a4903a5c49114e2d106c8",
           "Name": "curve",
           "Description": "curve",
           "UsingDefaultValue": false,
@@ -7497,7 +7395,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e7fdbe590fdf4fcd9fc392c1bfc080b4",
+          "Id": "34e9db495a5e4766960e8c502c5b7000",
           "Name": "points",
           "Description": "points",
           "UsingDefaultValue": false,
@@ -7506,7 +7404,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "f80bee1a0f2049978ac0f506b9ab5fe7",
+          "Id": "12bdd3e8b2824f8bacd3e3d5f800ad71",
           "Name": "muros",
           "Description": "muros",
           "UsingDefaultValue": false,
@@ -7517,7 +7415,7 @@
       ],
       "Outputs": [
         {
-          "Id": "c7479f4cd0cf474b97628e1635f3427c",
+          "Id": "800c6934e1204ef58b53529337f08f55",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -7526,7 +7424,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5733955959e4468f824294b39699a68e",
+          "Id": "a09e612593a44237b86a87bae2e92dc8",
           "Name": "",
           "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
@@ -7535,7 +7433,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "256f4ae8d31542949a0e7a1e0b369d23",
+          "Id": "0e5378fc4360442ea2c0f8ca6fb95edb",
           "Name": "",
           "Description": "Value of expression at line 3",
           "UsingDefaultValue": false,
@@ -7544,7 +7442,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "904d4dea5e8840e9b32012fd440be8cc",
+          "Id": "e60d68a730554c3aaeb3125a7c16eceb",
           "Name": "",
           "Description": "view_plane_normal",
           "UsingDefaultValue": false,
@@ -7553,7 +7451,16 @@
           "KeepListStructure": false
         },
         {
-          "Id": "de83857e4b834207ae3ac408961598ee",
+          "Id": "be235177e4634cb0954fa65c8472317e",
+          "Name": "",
+          "Description": "Value of expression at line 5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b2a8663ddb6e42cdb4044e4322382ac8",
           "Name": "",
           "Description": "elem_geom",
           "UsingDefaultValue": false,
@@ -7562,7 +7469,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "37e85ebf203a494ab2709598bdc0046f",
+          "Id": "adeb13ee993440d9947074ec8d1d2544",
           "Name": "",
           "Description": "elem_geom_flat",
           "UsingDefaultValue": false,
@@ -7571,7 +7478,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "6ebbddd0845f4b429ae9b1e887faaeea",
+          "Id": "ce4d7a9be1a847debb0b0c57273c0dd0",
           "Name": "",
           "Description": "centroid_geom",
           "UsingDefaultValue": false,
@@ -7580,7 +7487,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e0d8f7591a4f47a2b9003933a25df151",
+          "Id": "d368047699b94cdc8b93dfc59ff9db05",
           "Name": "",
           "Description": "plane",
           "UsingDefaultValue": false,
@@ -7589,7 +7496,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "ed730d54c17b44f6943d27cbdae1bf07",
+          "Id": "11a3d268aad94468b5a8149ef026e46d",
           "Name": "",
           "Description": "elem_geom_scaled",
           "UsingDefaultValue": false,
@@ -7598,7 +7505,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "504328a8472e4280881471190258866f",
+          "Id": "af639884922145ceae95bca2b8dfed4c",
           "Name": "",
           "Description": "curve_splited",
           "UsingDefaultValue": false,
@@ -7607,7 +7514,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "ca5689c729bf447387a8eec64235b69d",
+          "Id": "ab97ac09daaf4086910b8cc003198db5",
           "Name": "",
           "Description": "point_at_param",
           "UsingDefaultValue": false,
@@ -7616,7 +7523,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "437c0cb8004d44089b434772c698f7c2",
+          "Id": "e5303d5859964b5693cad1f25b66e544",
           "Name": "",
           "Description": "bool_intersect",
           "UsingDefaultValue": false,
@@ -7625,7 +7532,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e87e5284e6d8430c8a3850e76aa041c3",
+          "Id": "7d34066a61864682af64718044525d54",
           "Name": "",
           "Description": "mask",
           "UsingDefaultValue": false,
@@ -7634,7 +7541,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "f78ee2b64e844884a627a1217ef9878d",
+          "Id": "9b14f2262da94e1f8c733a9b6c7b984a",
           "Name": "",
           "Description": "host_elem",
           "UsingDefaultValue": false,
@@ -7679,11 +7586,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "t2 = t3;\nt1 = t2;\nvector1 = Autodesk.Surface.NormalAtParameter(t1, 0.5, 0.5);\nvector2 = Autodesk.Vector.Reverse(vector1);\nsurface = Autodesk.Geometry.Translate(t3, vector2, t4)[0];\npoint = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane = Autodesk.Plane.ByOriginNormal(point, surface_normal);",
+      "Code": "t2 = t3;\nt1 = t2;\nvector1 = Autodesk.Surface.NormalAtParameter(t1, 0.5, 0.5);\nvector2 = Autodesk.Vector.Reverse(vector1);\nsurface = Autodesk.Geometry.Translate(t3, vector2, t4)[0];\npoint = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane = Autodesk.Plane.ByOriginNormal(point, Autodesk.Vector.ZAxis());\n\nscaled_surface = Autodesk.Geometry.Scale(surface, plane, 1, 1, 50);",
       "Id": "b6b2ddde9cfc4b4bb7cb093b919e9f88",
       "Inputs": [
         {
-          "Id": "c75005c45f0f4f22896c23249660e66b",
+          "Id": "cec54586bdc340ceb6a98b868c361e62",
           "Name": "t3",
           "Description": "t3",
           "UsingDefaultValue": false,
@@ -7692,7 +7599,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "c4d4115adfb046e38bde22f44fc639fb",
+          "Id": "c8dd32d3583d4a2a883889425b5e925f",
           "Name": "t4",
           "Description": "t4",
           "UsingDefaultValue": false,
@@ -7703,7 +7610,7 @@
       ],
       "Outputs": [
         {
-          "Id": "9af259f90f3a4bd98b706001d3f986e0",
+          "Id": "985d00af8d1e4989a2494360a2ca353a",
           "Name": "",
           "Description": "t2",
           "UsingDefaultValue": false,
@@ -7712,7 +7619,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5f097cb8f4204f10999b30acbad69f43",
+          "Id": "de86565ba6ed474f9df1fbc7d9c40659",
           "Name": "",
           "Description": "t1",
           "UsingDefaultValue": false,
@@ -7721,7 +7628,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "76cf8fac24d1456b8638218de70387a3",
+          "Id": "7d83d437e7064436aeb870398e489b92",
           "Name": "",
           "Description": "vector1",
           "UsingDefaultValue": false,
@@ -7730,7 +7637,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b96c283106ec43479bf7855d3013db4e",
+          "Id": "b43ee25866a8425aba36a894ab7faaae",
           "Name": "",
           "Description": "vector2",
           "UsingDefaultValue": false,
@@ -7739,7 +7646,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "59d51a8b360545ad9da880fd978c0cc4",
+          "Id": "7b26eea277944c75bdc931d35a5055e8",
           "Name": "",
           "Description": "surface",
           "UsingDefaultValue": false,
@@ -7748,7 +7655,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "22f64c5ed5bd4e2bbcf8055e208df8f8",
+          "Id": "45236ef66391440088cd10c5f618d026",
           "Name": "",
           "Description": "point",
           "UsingDefaultValue": false,
@@ -7757,7 +7664,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "de2ae99d9f3b484c86f24eb27732cb83",
+          "Id": "0c1e73da4dfe44999c34c0bce89ffd2c",
           "Name": "",
           "Description": "surface_normal",
           "UsingDefaultValue": false,
@@ -7766,9 +7673,18 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b8a18590b0ec42ed815f90378d066c67",
+          "Id": "70e13421e13446f5ac7c9da4d08f0f96",
           "Name": "",
           "Description": "plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63f22da44c474d1abf795c4eaabd140c",
+          "Name": "",
+          "Description": "scaled_surface",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -7903,13 +7819,22 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "coleccion;\ncategory = Revit.Elements.Element.GetCategory(coleccion);\ncategory_name = Revit.Category.Name(category);\nmask = category_name == \"Walls\";\nelement = DSCore.List.FilterByBoolMask(coleccion, mask)[\"in\"][0];\nelement_type = Revit.Elements.Element.GetParameterValueByName(element, \"Type\");\nelement_width = Revit.Elements.Element.GetParameterValueByName(element_type, \"Width\");\n(element_width / 2) - 40;",
+      "Code": "muros;\ncategory = Revit.Elements.Element.GetCategory(muros);\ncategory_name = Revit.Category.Name(category);\nmask = category_name == \"Walls\";\nelement = DSCore.List.FilterByBoolMask(muros, mask)[\"in\"];\nelement_type = Revit.Elements.Element.GetParameterValueByName(element, \"Type\");\nelement_width = Revit.Elements.Element.GetParameterValueByName(element_type, \"Width\");\ndist_traslacion_curva = (element_width[0] / 2) - 40;\nview_plane;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\nelem_geom_union = Autodesk.Solid.ByUnion(elem_geom_scaled);",
       "Id": "d05fef06b55144a89fdfa0694e418b4c",
       "Inputs": [
         {
-          "Id": "ed213fb3d606477797e318b742e18344",
-          "Name": "coleccion",
-          "Description": "coleccion",
+          "Id": "02efffdf9dea42f0aa8d954be1ee08ae",
+          "Name": "muros",
+          "Description": "muros",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1e78b407ba414dddaa798c7580bc7120",
+          "Name": "view_plane",
+          "Description": "view_plane",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -7918,7 +7843,7 @@
       ],
       "Outputs": [
         {
-          "Id": "1bc4e41fa4ac4d62821f84293783be9e",
+          "Id": "7dae672b02d94b21b59cf00146fc4b64",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -7927,7 +7852,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2bb894fa05ec447cb7b13e48e000b873",
+          "Id": "cc98736cfa8c42ff931f36df4fad0480",
           "Name": "",
           "Description": "category",
           "UsingDefaultValue": false,
@@ -7936,7 +7861,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "40496e263b5646868885a8c32b1cbdef",
+          "Id": "335973a81377478f997e6f80af964d3e",
           "Name": "",
           "Description": "category_name",
           "UsingDefaultValue": false,
@@ -7945,7 +7870,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "7b8c5af2fbce451d8eda820421c0e61c",
+          "Id": "ab0465e51a884075af3000fe397e63ab",
           "Name": "",
           "Description": "mask",
           "UsingDefaultValue": false,
@@ -7954,7 +7879,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "03e07b3c0c324ff6a19ccdf052e91b29",
+          "Id": "56a7c26437c040e99fcac913fd4bc231",
           "Name": "",
           "Description": "element",
           "UsingDefaultValue": false,
@@ -7963,7 +7888,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "c3738acb647344acbe7e9f21f7d579b9",
+          "Id": "76e905dbe7b84b8f96c93e278bbc0b8e",
           "Name": "",
           "Description": "element_type",
           "UsingDefaultValue": false,
@@ -7972,7 +7897,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1797f4e265464d1fb950adced0ec7322",
+          "Id": "f3c82c0a96c642f782844994d2be5b27",
           "Name": "",
           "Description": "element_width",
           "UsingDefaultValue": false,
@@ -7981,9 +7906,81 @@
           "KeepListStructure": false
         },
         {
-          "Id": "3465ed8d5c464ff9ba1d6cca5b0c3de2",
+          "Id": "60c6cd745dac4c8fbc421e6268ec25b3",
           "Name": "",
-          "Description": "Value of expression at line 8",
+          "Description": "dist_traslacion_curva",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5ea8406bede741718a87e8e32223b50e",
+          "Name": "",
+          "Description": "Value of expression at line 9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f177ee2ec3294e0a914f6c2058753858",
+          "Name": "",
+          "Description": "view_plane_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb2478d5ca8f420896f42bd648e4cb67",
+          "Name": "",
+          "Description": "elem_geom",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "547329825e534daa8737afd068a853a7",
+          "Name": "",
+          "Description": "elem_geom_flat",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c20ac53d44274a9f8bdb63d1718c3e1f",
+          "Name": "",
+          "Description": "centroid_geom",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0d2289929b9c487bb4e69b13257f4fad",
+          "Name": "",
+          "Description": "plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c35ad0b381ab45bb9ac4aa253449adf1",
+          "Name": "",
+          "Description": "elem_geom_scaled",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da423b24457e4a2e870e911a913cdbd6",
+          "Name": "",
+          "Description": "elem_geom_union",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -8041,29 +8038,14 @@
       "Id": "7d85be9ddec64d56a968a9f5a7728a9d"
     },
     {
-      "Start": "2a7aa5f90aa8438b95ff1cedf5caeb3c",
-      "End": "1d9679d76359400da25b19bb28c50f5b",
-      "Id": "2e66eca035174ccd9dbd9f730894cc58"
-    },
-    {
       "Start": "9f42bfc356a54354afe87bdd9ce52efb",
       "End": "58a7af8b4d344677966fb32d74f8c557",
       "Id": "27e468474a5a4281847f7ee52896eee3"
     },
     {
       "Start": "8e4648c05da946ea9f2d8a089412fb59",
-      "End": "f80bee1a0f2049978ac0f506b9ab5fe7",
-      "Id": "ad908ee7bf0542c69d6c44e566ee7e0f"
-    },
-    {
-      "Start": "8e4648c05da946ea9f2d8a089412fb59",
-      "End": "ed213fb3d606477797e318b742e18344",
-      "Id": "e943ec953ba34a34a8eb4950f454ed63"
-    },
-    {
-      "Start": "8e4648c05da946ea9f2d8a089412fb59",
-      "End": "560239dee077431f844bb2c4d050b3a8",
-      "Id": "0995d3d324af4d4b962c47fb1065c075"
+      "End": "02efffdf9dea42f0aa8d954be1ee08ae",
+      "Id": "16d5b3e89cb84bd9bf71134dfd698ca0"
     },
     {
       "Start": "95230a0f4af3481cb743e650623d9ab3",
@@ -8077,8 +8059,8 @@
     },
     {
       "Start": "95230a0f4af3481cb743e650623d9ab3",
-      "End": "c75005c45f0f4f22896c23249660e66b",
-      "Id": "e0b1baff754e466aa06f8884b82ce1ba"
+      "End": "cec54586bdc340ceb6a98b868c361e62",
+      "Id": "df8c2ad97a7443f5852786aff10d3741"
     },
     {
       "Start": "a5709ded77df4d21af6dced5ae001180",
@@ -8201,9 +8183,9 @@
       "Id": "972a45b4b77a44f5921681cf12cdf4d5"
     },
     {
-      "Start": "2b6b20a4196c43b2a68babd6c54cdc96",
+      "Start": "39868c571b0e48edaae5254d29b021e2",
       "End": "65114b329e44410bbde76a1d6ec9ee76",
-      "Id": "8df3d2af38f94dd2b16fbc1ab3d84996"
+      "Id": "6f7f51fa32dd4251bd8ed2e9de863294"
     },
     {
       "Start": "59d54da1a852452b89a45def5d346f3e",
@@ -8412,8 +8394,8 @@
     },
     {
       "Start": "c22a0382667948f494048f8c9355c5ca",
-      "End": "e7fdbe590fdf4fcd9fc392c1bfc080b4",
-      "Id": "dbccd943e4804d0a8451b82350673df8"
+      "End": "34e9db495a5e4766960e8c502c5b7000",
+      "Id": "23d0ea83043e4a0f8b1a07b7cdb138ba"
     },
     {
       "Start": "054989f677fb4dfbb7bfdd25640c3371",
@@ -8647,8 +8629,8 @@
     },
     {
       "Start": "6bcf1efec0db4bbeab98ece0bb63d502",
-      "End": "c4d4115adfb046e38bde22f44fc639fb",
-      "Id": "a5c236624e574c858b76fe9db338ea1a"
+      "End": "c8dd32d3583d4a2a883889425b5e925f",
+      "Id": "82636bf4fc2f47c38baf07d418cab938"
     },
     {
       "Start": "9bacae23017b4db4ad25a1c4f9972ad1",
@@ -9271,9 +9253,9 @@
       "Id": "bf3f8076e08d470087270df62837d075"
     },
     {
-      "Start": "f78ee2b64e844884a627a1217ef9878d",
+      "Start": "9b14f2262da94e1f8c733a9b6c7b984a",
       "End": "8d25294c59dd4d449e01a31cc88f2f36",
-      "Id": "5fbbe897f0284dc491fe283d67795399"
+      "Id": "02d7a078b3c04afdb859dfc9c931f01c"
     },
     {
       "Start": "87fe3bc6ed5d4dcb8ffd63f7cdd112e3",
@@ -9292,18 +9274,18 @@
     },
     {
       "Start": "87fe3bc6ed5d4dcb8ffd63f7cdd112e3",
-      "End": "5aa8367917ef4c5e8853b31d18d1a2f8",
-      "Id": "702575f3e7dc4d25b530073eb3a885a0"
+      "End": "a11a2df5812a4903a5c49114e2d106c8",
+      "Id": "6e2733f49c214305b773f9954d863abe"
     },
     {
-      "Start": "b8a18590b0ec42ed815f90378d066c67",
+      "Start": "63f22da44c474d1abf795c4eaabd140c",
       "End": "f2ad2b97126641a99c9c50b7a07deed4",
-      "Id": "7bade7862e244c459de156f0136af8cf"
+      "Id": "df774092680946eb8586238cd5fcbdb8"
     },
     {
       "Start": "e28876fddcc14dd49a7fa907ec0e5863",
-      "End": "09b6637b3f7a4516bc560f41e6ab825d",
-      "Id": "fd79b256a56e47bbbb5b70c7c5096a03"
+      "End": "1e78b407ba414dddaa798c7580bc7120",
+      "Id": "82c3f96f42b24b71b3e0ced003b80c52"
     },
     {
       "Start": "24a7053991824bbd8b1bdd6356f796cf",
@@ -9312,8 +9294,8 @@
     },
     {
       "Start": "16d413c80afb48e9975c21a66c07953d",
-      "End": "e15e9dd17e9640e88658bb6f47023d11",
-      "Id": "891a9d2db9ec4b2abf0c46827cd57425"
+      "End": "f86f182186e748d0b0d181dc3c957d89",
+      "Id": "01a047f994dc422fbe035130f97f74d9"
     },
     {
       "Start": "05ce7050668e43e1a8a7f2d9b8d8f67b",
@@ -9321,14 +9303,24 @@
       "Id": "14a78fc5eeb641e09bf43b6a36c9f328"
     },
     {
-      "Start": "03e07b3c0c324ff6a19ccdf052e91b29",
-      "End": "e987b81345734d16a1ec34b90788ae46",
-      "Id": "2aa6fa9e20034c1f850faca47d3c9c5e"
+      "Start": "56a7c26437c040e99fcac913fd4bc231",
+      "End": "fbaf7b7a06cb48d3a2e1cdcfee3ad838",
+      "Id": "11225889b97b4c77b7a666091f673f70"
     },
     {
-      "Start": "3465ed8d5c464ff9ba1d6cca5b0c3de2",
+      "Start": "56a7c26437c040e99fcac913fd4bc231",
+      "End": "12bdd3e8b2824f8bacd3e3d5f800ad71",
+      "Id": "c130471910274953b6b7fc74f9c1e804"
+    },
+    {
+      "Start": "60c6cd745dac4c8fbc421e6268ec25b3",
       "End": "f4dff3a8abd340cbacba8dbb74eb8aaa",
-      "Id": "c396304405e4456a971b45afd56f67f2"
+      "Id": "d06a9155b66041bf9d37d13d8fa90ecf"
+    },
+    {
+      "Start": "da423b24457e4a2e870e911a913cdbd6",
+      "End": "1d9679d76359400da25b19bb28c50f5b",
+      "Id": "00ad3db817de408d83ddae6ea6d5f98a"
     }
   ],
   "Dependencies": [
@@ -9438,15 +9430,15 @@
     },
     "Camera": {
       "Name": "Background Preview",
-      "EyeX": -4095.6253534232274,
-      "EyeY": 43009.150881378,
-      "EyeZ": 19245.003882048237,
-      "LookX": 17262.852570490326,
-      "LookY": -30953.116790007825,
-      "LookZ": -31143.010429374946,
-      "UpX": 0.31806372870407496,
-      "UpY": 0.75470958022278745,
-      "UpZ": -0.57380215580185279
+      "EyeX": -21664.227075242768,
+      "EyeY": 6436.5501431435387,
+      "EyeZ": 2112.3287907127515,
+      "LookX": 435.86924098044256,
+      "LookY": -933.83582949966967,
+      "LookZ": -6233.220546828099,
+      "UpX": 0.01031066330659699,
+      "UpY": 0.989015863361943,
+      "UpZ": -0.14744935483298344
     },
     "NodeViews": [
       {
@@ -9490,24 +9482,14 @@
         "Y": 1355.69937147227
       },
       {
-        "Id": "1630ae1146a349a28d17801884794ae9",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Name": "Solidos de Muros seleccionados",
-        "ShowGeometry": false,
-        "Excluded": false,
-        "X": 6058.59666171932,
-        "Y": 999.291106382003
-      },
-      {
         "Id": "014f5fa85345453d8a1f7bd43c3c3852",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Name": "Geometry.Translate",
-        "ShowGeometry": false,
+        "ShowGeometry": true,
         "Excluded": false,
-        "X": 10341.102417087655,
-        "Y": 1300.8173604534295
+        "X": 10098.062768107689,
+        "Y": 1335.5373103077102
       },
       {
         "Id": "bb220089cb3444ab8f863ccf23670a77",
@@ -11054,10 +11036,10 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Name": "Curve.Reverse",
-        "ShowGeometry": false,
+        "ShowGeometry": true,
         "Excluded": false,
-        "X": 10391.102417087655,
-        "Y": 1437.3588085656195
+        "X": 10370.945560885631,
+        "Y": 1259.6798538959367
       },
       {
         "Id": "b6b2ddde9cfc4b4bb7cb093b919e9f88",
@@ -11121,8 +11103,8 @@
       }
     ],
     "Annotations": [],
-    "X": -2445.0157419055522,
-    "Y": -117.84542544897579,
-    "Zoom": 0.507796886470146
+    "X": -5015.449505869432,
+    "Y": -618.53326109521026,
+    "Zoom": 0.90673335891691331
   }
 }
