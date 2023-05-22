@@ -3079,490 +3079,6 @@
       "Description": "Allows for DesignScript code to be authored directly"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "solid;\nplane_cut;\n\ngeometry1 = Autodesk.Geometry.Intersect(solid, plane_cut);\npoint1 = Autodesk.Surface.PointAtParameter(geometry1, 0.5, 0.5);\nvector1 = Autodesk.Vector.ZAxis();\ngeometry2 = Autodesk.Geometry.Rotate(geometry1, point1, vector1, 90);\ngeometry11 = geometry2;\npoint11 = Autodesk.Surface.PointAtParameter(geometry11, 0.5, 0.5);\nvector11 = Autodesk.Surface.NormalAtPoint(geometry11, point11);\nplane1 = Autodesk.Plane.ByOriginNormal(point11, vector11);\ngeometry3 = Autodesk.Geometry.Scale(geometry2, plane1, 1, 15, 1);\ngeometry4 = Autodesk.Geometry.Intersect(geometry1, plane1)[0];",
-      "Id": "82858a14923d4405b917e795fb52a478",
-      "Inputs": [
-        {
-          "Id": "995d6cac53344451b8bc5547d5425efa",
-          "Name": "solid",
-          "Description": "solid",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "21f0c213a72e425ca33c065c725c18aa",
-          "Name": "plane_cut",
-          "Description": "plane_cut",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "657e0017bdc341bead7c24d8d0039985",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1fdf51ba00094e48b2e05331e3d2ece9",
-          "Name": "",
-          "Description": "Value of expression at line 2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "b89ef5fe2e98428192c4271f25836bee",
-          "Name": "",
-          "Description": "geometry1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "ee87472ecfca46aa91e9560fd4d40d36",
-          "Name": "",
-          "Description": "point1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "3636b7a8a0a34fedbdb74b0830fa9eac",
-          "Name": "",
-          "Description": "vector1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "8bb90fc18ec14247bb23dffdce09ae9f",
-          "Name": "",
-          "Description": "geometry2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "4ff6569275ff46a7bc6dbac0046671c8",
-          "Name": "",
-          "Description": "geometry11",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "14dedff8420f4f18b47374b1e6e70a0d",
-          "Name": "",
-          "Description": "point11",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "0679cdb1940e412aa7c2e8aea0a56a6a",
-          "Name": "",
-          "Description": "vector11",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "999f265d93ed4085b5fa1078442bf284",
-          "Name": "",
-          "Description": "plane1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d5476a5c67d84536a324bd076548c70a",
-          "Name": "",
-          "Description": "geometry3",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "202a63b388b74009bf78c0299f2447f6",
-          "Name": "",
-          "Description": "geometry4",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "capa;\ndistribucion;\n\nvector1 = Autodesk.Surface.NormalAtParameter(distribucion, 0.5, 0.5);\nvector2 = Autodesk.Vector.Reverse(vector1);\nsurface = Autodesk.Geometry.Translate(distribucion, vector2, capa)[0];\npoint = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane = Autodesk.Plane.ByOriginNormal(point, Autodesk.Vector.ZAxis());\nscaled_surface = Autodesk.Geometry.Scale(surface, plane, 1, 1, 50);",
-      "Id": "a448c738f71b4c81be6c256b88aa4217",
-      "Inputs": [
-        {
-          "Id": "27d7fbaffd144dd49109fa70d1223dea",
-          "Name": "capa",
-          "Description": "capa",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "92faf43d90ee4dbcaa5cc66160256420",
-          "Name": "distribucion",
-          "Description": "distribucion",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "8e4bbed0242744e3a230fd3b1da65d97",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "4250570df781403c9b6fdff5824c0b5b",
-          "Name": "",
-          "Description": "Value of expression at line 2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "75cc0c3f7fb74cc9acf55fb6cd768fad",
-          "Name": "",
-          "Description": "vector1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "bb4646c75d6b4e2180a42e8947b2c885",
-          "Name": "",
-          "Description": "vector2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "ef589cede7a04d1084fc05c1103ecba5",
-          "Name": "",
-          "Description": "surface",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "5eee41dff71f49c1908824a6a0e8d8fe",
-          "Name": "",
-          "Description": "point",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "e07b2858d1cb40c8881f4db044de7b69",
-          "Name": "",
-          "Description": "surface_normal",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "6a48b6f6294c4f519b9d5bbf0a328b1e",
-          "Name": "",
-          "Description": "plane",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "817da0e6c17a4da5827f9c137e1ab4eb",
-          "Name": "",
-          "Description": "scaled_surface",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "muros;\ncategory = Revit.Elements.Element.GetCategory(muros);\ncategory_name = Revit.Category.Name(category);\nmask = category_name == \"Walls\";\nelement = DSCore.List.FilterByBoolMask(muros, mask)[\"in\"];\nelement_type = Revit.Elements.Element.GetParameterValueByName(element, \"Type\");\nelement_width = Revit.Elements.Element.GetParameterValueByName(element_type, \"Width\");\ndist_traslacion_curva = (element_width[0] / 2) - 40;\nview_plane;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\nelem_geom_union = Autodesk.Solid.ByUnion(elem_geom_scaled);",
-      "Id": "7f584f7610f743429976cd64772a3060",
-      "Inputs": [
-        {
-          "Id": "a1d8172725a14fa193c585f3323f62c2",
-          "Name": "muros",
-          "Description": "muros",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "cb82400a0c19432aa4741080bd5a9a27",
-          "Name": "view_plane",
-          "Description": "view_plane",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "347393f2ffad48d4945c36b47cfb518f",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "2c7b361d05a846ce862b0262295b7c16",
-          "Name": "",
-          "Description": "category",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "5a77125285c64a629b4d1f346099799b",
-          "Name": "",
-          "Description": "category_name",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "77d0916e988847f0b9ae3c73d5910188",
-          "Name": "",
-          "Description": "mask",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7e36da156ceb439ca7a23c6bfaebdea2",
-          "Name": "",
-          "Description": "element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "6de35c1261f7473e8e4ab920d6620f4e",
-          "Name": "",
-          "Description": "element_type",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "fe1cb9cf65a44de4b807923c665b72ba",
-          "Name": "",
-          "Description": "element_width",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "9e5efefc9b734feb87e937acd82b8d4c",
-          "Name": "",
-          "Description": "dist_traslacion_curva",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1c31262cfdd94fa0aa83dcfa29176b5a",
-          "Name": "",
-          "Description": "Value of expression at line 9",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1ae4dfaef0b6406d8a6b62ce659ffadc",
-          "Name": "",
-          "Description": "view_plane_normal",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "297e4a8cde194bca8d989fb5d2499c9c",
-          "Name": "",
-          "Description": "elem_geom",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f3855c0792214e1280662ccede152b32",
-          "Name": "",
-          "Description": "elem_geom_flat",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "ae0e6e89ffa04ea18a5de888f64680d4",
-          "Name": "",
-          "Description": "centroid_geom",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d9d00de23df5441fb35e9db940a92d24",
-          "Name": "",
-          "Description": "plane",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "0f48a431f43041d4acdc21f7cfe22c16",
-          "Name": "",
-          "Description": "elem_geom_scaled",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f09517afad1a40e18912cdb9f3295d20",
-          "Name": "",
-          "Description": "elem_geom_union",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Orchid.RevitProject.Common.Document.ActiveView@Orchid.RevitProject.Common.Document",
-      "Id": "fa755c49cd5b404ea55512bc156f458b",
-      "Inputs": [
-        {
-          "Id": "91e9c56b8c25459fa1232645b30de09a",
-          "Name": "document",
-          "Description": "Document (rvt) as Orchid document.\n\nDocument\nDefault value : null",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "c5db99ee63aa4e6fa6b7e498a224c058",
-          "Name": "View",
-          "Description": "The active view as Dynamo type.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Get the active view in document.\n\nDocument.ActiveView (document: Document = null): Element\n\nNamespace:\nOrchid.RevitProject.Common"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
-      "FunctionSignature": "d6dbde59-f3f7-47b5-9e1e-f30991f58ac1",
-      "FunctionType": "Graph",
-      "NodeType": "FunctionNode",
-      "Id": "fc580854a9604bb8bd70764a6fe63575",
-      "Inputs": [
-        {
-          "Id": "f246635ad7184aefaec4596a30e5eba9",
-          "Name": "view",
-          "Description": "var[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "3bf45d2fac2e4da388dc6c0d0e500596",
-          "Name": "plane",
-          "Description": "return value",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Retrieves the plane of a given view"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.Reverse",
@@ -3591,6 +3107,430 @@
       ],
       "Replication": "Auto",
       "Description": "Reverse the direction of the curve\n\nCurve.Reverse ( ): Curve"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "muros;\ncategory = Revit.Elements.Element.GetCategory(muros);\ncategory_name = Revit.Category.Name(category);\nmask = category_name == \"Walls\";\nelement = DSCore.List.FilterByBoolMask(muros, mask)[\"in\"];\nelement_type = Revit.Elements.Element.GetParameterValueByName(element, \"Type\");\nelement_width = Revit.Elements.Element.GetParameterValueByName(element_type, \"Width\");\ndist_traslacion_curva = (element_width[0] / 2) - 40;\nview_plane;\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\nelem_geom = Revit.Elements.Element.Geometry(muros);\nelem_geom_flat = DSCore.List.Flatten(elem_geom, -1);\ncentroid_geom = Autodesk.Solid.Centroid(elem_geom_flat);\nplane = Autodesk.Plane.ByOriginNormal(centroid_geom, view_plane_normal);\nelem_geom_scaled = Autodesk.Geometry.Scale(elem_geom_flat, plane, 1, 5, 1);\nelem_geom_union = Autodesk.Solid.ByUnion(elem_geom_scaled);\n\ncapa;\ndistribucion;\n\nsurf_normal = Autodesk.Surface.NormalAtParameter(distribucion, 0.5, 0.5);\nvector2 = Autodesk.Vector.Reverse(surf_normal);\nsurface = Autodesk.Geometry.Translate(distribucion, vector2, capa)[0];\npoint = Autodesk.Surface.PointAtParameter(surface, 0.5, 0.5);\nsurface_normal = Autodesk.Surface.NormalAtParameter(surface, 0.5, 0.5);\nplane_2 = Autodesk.Plane.ByOriginNormal(point, Autodesk.Vector.ZAxis());\nscaled_surface = Autodesk.Geometry.Scale(surface, plane_2, 1, 1, 50);\n\n\ngeom_intersect = Autodesk.Geometry.Intersect(elem_geom_union, scaled_surface);\ngeom_point = Autodesk.Surface.PointAtParameter(geom_intersect, 0.5, 0.5);\nvector1 = Autodesk.Vector.ZAxis();\ngeometry2 = Autodesk.Geometry.Rotate(geom_intersect, geom_point, vector1, 90);\ngeometry11 = geometry2;\npoint11 = Autodesk.Surface.PointAtParameter(geometry11, 0.5, 0.5);\nvector11 = Autodesk.Surface.NormalAtPoint(geometry11, point11);\nplane1 = Autodesk.Plane.ByOriginNormal(point11, vector11);\ngeometry3 = Autodesk.Geometry.Scale(geometry2, plane1, 1, 15, 1);\ngeometry4 = DSCore.List.Flatten(Autodesk.Geometry.Intersect(geom_intersect, plane1), -1)[0];",
+      "Id": "737c973f8cdc40bfbdff1a9eb9dbff44",
+      "Inputs": [
+        {
+          "Id": "b462c77bc96345199e13988f077986fc",
+          "Name": "muros",
+          "Description": "muros",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dea8a5d56ea34405aef83f2f242ddbf0",
+          "Name": "view_plane",
+          "Description": "view_plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ae694690e4924dd09291faecc06d69b1",
+          "Name": "capa",
+          "Description": "capa",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c94dfcd553e74ed88317863698e3b1ce",
+          "Name": "distribucion",
+          "Description": "distribucion",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ed05bd1d1e9f45dea5e42dc4e3cc0426",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c3707ff25261431486fdc2429836770b",
+          "Name": "",
+          "Description": "category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b8ae54df15e64bf2beafbeb322a069c8",
+          "Name": "",
+          "Description": "category_name",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "98ad86687aec48659b697b114ba7672e",
+          "Name": "",
+          "Description": "mask",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c87beae399d4edfae0b7812771bac62",
+          "Name": "",
+          "Description": "element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9a59073875ea42578a26a59438130204",
+          "Name": "",
+          "Description": "element_type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3175716c418b45fd8743d23175ae85ed",
+          "Name": "",
+          "Description": "element_width",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dc6bdb67f90d4b849a9744a7ada3b6d9",
+          "Name": "",
+          "Description": "dist_traslacion_curva",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8bf3dd69638246c3806c7676176b4a88",
+          "Name": "",
+          "Description": "Value of expression at line 9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ca2b9f7b976b4b128f8db0c85f971401",
+          "Name": "",
+          "Description": "view_plane_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5da588ad16c647579ce540f8bb2e500d",
+          "Name": "",
+          "Description": "elem_geom",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6a1fc00a0f4c40008df1080e5e5ea670",
+          "Name": "",
+          "Description": "elem_geom_flat",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2bf2e6cfda934a0badfb5aba5c2537b4",
+          "Name": "",
+          "Description": "centroid_geom",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb1c27e8ee1b40fbbb6b9a8987f78227",
+          "Name": "",
+          "Description": "plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d744701ca21d4b07aceb3b936e627983",
+          "Name": "",
+          "Description": "elem_geom_scaled",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ed693bfea3b14bf6ac4f1f21876aaa92",
+          "Name": "",
+          "Description": "elem_geom_union",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "16c8f64e6cdb4997ad90668a24e04999",
+          "Name": "",
+          "Description": "Value of expression at line 18",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2fb9738e93b640249433b1269d91a1c0",
+          "Name": "",
+          "Description": "Value of expression at line 19",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "435f0a4311f8428499e9fd9ac82fdc6d",
+          "Name": "",
+          "Description": "surf_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1ae60605a39942789b14a5cb6d904000",
+          "Name": "",
+          "Description": "vector2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "893857577a914f7ea53f50c431095fba",
+          "Name": "",
+          "Description": "surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b25d749c0b1c48ffb59f3be970579e30",
+          "Name": "",
+          "Description": "point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f3423896a4314a8db7a8738ff71c7d1d",
+          "Name": "",
+          "Description": "surface_normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4106b6716b03421e8abb663b08ad81f3",
+          "Name": "",
+          "Description": "plane_2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6864dfa1c8f9498c8a6fedee53a37395",
+          "Name": "",
+          "Description": "scaled_surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dfd00697b79d4212952dcc043bf80f87",
+          "Name": "",
+          "Description": "geom_intersect",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aaf8823d134a4bcc972e5ef5f75dde2c",
+          "Name": "",
+          "Description": "geom_point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "81aa49755ed04e5aaf2ed731ad854a1b",
+          "Name": "",
+          "Description": "vector1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b1d6e9b1f26d4dea856794f730498095",
+          "Name": "",
+          "Description": "geometry2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "39647b02f64141b39c398c1f47f8b83b",
+          "Name": "",
+          "Description": "geometry11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "81f6d09a4c9a491aa55f07006efdb090",
+          "Name": "",
+          "Description": "point11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c70728b468f14e0b9029806d255be4f4",
+          "Name": "",
+          "Description": "vector11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c2b77485a56e42918d0657b1762105bf",
+          "Name": "",
+          "Description": "plane1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da2d4ff5ea4d4ecc92cd4843bbc4ad24",
+          "Name": "",
+          "Description": "geometry3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d660f86db44644efa7197a4ad0a89546",
+          "Name": "",
+          "Description": "geometry4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d6dbde59-f3f7-47b5-9e1e-f30991f58ac1",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "220d066bc5ff41bc955743ecf3568d28",
+      "Inputs": [
+        {
+          "Id": "b874329eb174443489fc3fbc680f5481",
+          "Name": "view",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8ad3a2b977fb460c9b781bf9b129f470",
+          "Name": "plane",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Retrieves the plane of a given view"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Orchid.RevitProject.Common.Document.ActiveView@Orchid.RevitProject.Common.Document",
+      "Id": "ec86f2e450dd4007aab9c002fefeddf8",
+      "Inputs": [
+        {
+          "Id": "3979f036ce7643679e2db9ea58ed9193",
+          "Name": "document",
+          "Description": "Document (rvt) as Orchid document.\n\nDocument\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b3e403f362334066ad0779ef73dca54f",
+          "Name": "View",
+          "Description": "The active view as Dynamo type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the active view in document.\n\nDocument.ActiveView (document: Document = null): Element\n\nNamespace:\nOrchid.RevitProject.Common"
     }
   ],
   "Connectors": [
@@ -3646,13 +3586,13 @@
     },
     {
       "Start": "5d3469f955d74f27ace948ed413b9c9b",
-      "End": "a1d8172725a14fa193c585f3323f62c2",
-      "Id": "fe72888feed54509b07b205c5e4be666"
+      "End": "b462c77bc96345199e13988f077986fc",
+      "Id": "9a2b949138d744ea886fe7504fa1a050"
     },
     {
       "Start": "136ad93b37c04d3f956ac51a2ea00879",
-      "End": "92faf43d90ee4dbcaa5cc66160256420",
-      "Id": "e574c556c3c542a088e7f522dda41a83"
+      "End": "c94dfcd553e74ed88317863698e3b1ce",
+      "Id": "754bbce6a4094e8a834ec258765ca618"
     },
     {
       "Start": "72bf5e3a2de54699b5b72b5e695fd5d7",
@@ -4065,16 +4005,6 @@
       "Id": "0fb3b22f9b1143b08c9baf5cdacbb94c"
     },
     {
-      "Start": "fab9f19567a94c269f80ad4020831900",
-      "End": "9c4ed8d529024622b075405231ec73f2",
-      "Id": "798539a98fa94e13bc6b5de2e80355dc"
-    },
-    {
-      "Start": "fab9f19567a94c269f80ad4020831900",
-      "End": "1445292f77ca4475b068df041ca98a98",
-      "Id": "72874511a9784757bcd0b76e151caa13"
-    },
-    {
       "Start": "468c3bad8cad4b26a47500c63baec539",
       "End": "ac6f25c0438949578fcf7e5e7cfa932d",
       "Id": "660d82ff126b4951856216e3da2e8f68"
@@ -4101,58 +4031,53 @@
     },
     {
       "Start": "84c0cbe609f5431c88b8f02153f8df73",
-      "End": "27d7fbaffd144dd49109fa70d1223dea",
-      "Id": "7c4c3910ddd3462bb353543956330e3a"
-    },
-    {
-      "Start": "0679cdb1940e412aa7c2e8aea0a56a6a",
-      "End": "2f350bb87fe44ea29e82eba226a85300",
-      "Id": "d7af7f4b07b14b30b7b0dbe502d8cf45"
-    },
-    {
-      "Start": "202a63b388b74009bf78c0299f2447f6",
-      "End": "c989602ff189464e873b44a26a3f4362",
-      "Id": "10241680dc1344b1a0782c1654e9bb71"
-    },
-    {
-      "Start": "817da0e6c17a4da5827f9c137e1ab4eb",
-      "End": "21f0c213a72e425ca33c065c725c18aa",
-      "Id": "8fe02bded5094ceb88eb2f8efff76868"
-    },
-    {
-      "Start": "7e36da156ceb439ca7a23c6bfaebdea2",
-      "End": "370ccf53ce8a485da128e5da3ee791d9",
-      "Id": "199a17a069de4cb5878b5eff6385c49a"
-    },
-    {
-      "Start": "7e36da156ceb439ca7a23c6bfaebdea2",
-      "End": "7abb598067eb4ad2bfeb0fbf7a00f70e",
-      "Id": "462687d7fbd6459283619a33dfde68a4"
-    },
-    {
-      "Start": "9e5efefc9b734feb87e937acd82b8d4c",
-      "End": "f4dff3a8abd340cbacba8dbb74eb8aaa",
-      "Id": "fa251d036aee4d7e8cf6febfb24bb002"
-    },
-    {
-      "Start": "f09517afad1a40e18912cdb9f3295d20",
-      "End": "995d6cac53344451b8bc5547d5425efa",
-      "Id": "782d0b4281b4471ab3118eeb56076e99"
-    },
-    {
-      "Start": "c5db99ee63aa4e6fa6b7e498a224c058",
-      "End": "f246635ad7184aefaec4596a30e5eba9",
-      "Id": "3031811459924532b3ceb93eb88fcdd6"
-    },
-    {
-      "Start": "3bf45d2fac2e4da388dc6c0d0e500596",
-      "End": "cb82400a0c19432aa4741080bd5a9a27",
-      "Id": "8574421168614ecb921310c345798d7c"
+      "End": "ae694690e4924dd09291faecc06d69b1",
+      "Id": "5b30c72c09f3488ea2c53db93b424a42"
     },
     {
       "Start": "265bd11555884530bb8d239a0293b061",
       "End": "2f6bf8e785c5414cac7eb4a7190ddca0",
       "Id": "4af11cf00d6f41fab37f8e05fec61943"
+    },
+    {
+      "Start": "5c87beae399d4edfae0b7812771bac62",
+      "End": "370ccf53ce8a485da128e5da3ee791d9",
+      "Id": "ad5155e4d120428794ff6afe6b0b76bb"
+    },
+    {
+      "Start": "5c87beae399d4edfae0b7812771bac62",
+      "End": "7abb598067eb4ad2bfeb0fbf7a00f70e",
+      "Id": "cb75ccac63d347bf91bb24388fbfe46b"
+    },
+    {
+      "Start": "dc6bdb67f90d4b849a9744a7ada3b6d9",
+      "End": "f4dff3a8abd340cbacba8dbb74eb8aaa",
+      "Id": "c45fca08c01c4ba3a3aadc8ce24ae87e"
+    },
+    {
+      "Start": "c70728b468f14e0b9029806d255be4f4",
+      "End": "2f350bb87fe44ea29e82eba226a85300",
+      "Id": "58a33b4ea7814005a69459c9c15e63f2"
+    },
+    {
+      "Start": "d660f86db44644efa7197a4ad0a89546",
+      "End": "9c4ed8d529024622b075405231ec73f2",
+      "Id": "7f05f42d699841e995cfa43a69929a95"
+    },
+    {
+      "Start": "d660f86db44644efa7197a4ad0a89546",
+      "End": "1445292f77ca4475b068df041ca98a98",
+      "Id": "0ad46b0ccc4a4a2188842e9bcd9f31da"
+    },
+    {
+      "Start": "8ad3a2b977fb460c9b781bf9b129f470",
+      "End": "dea8a5d56ea34405aef83f2f242ddbf0",
+      "Id": "9c0b00a6b05448a2ac9e529bc326eb01"
+    },
+    {
+      "Start": "b3e403f362334066ad0779ef73dca54f",
+      "End": "b874329eb174443489fc3fbc680f5481",
+      "Id": "58530f77f95645e5aa10a58a6bd4ba5b"
     }
   ],
   "Dependencies": [
@@ -4205,7 +4130,7 @@
       "ReferenceType": "Package",
       "Nodes": [
         "b711a6cb30ca4868ba73d32858c006df",
-        "fa755c49cd5b404ea55512bc156f458b"
+        "ec86f2e450dd4007aab9c002fefeddf8"
       ]
     },
     {
@@ -4213,7 +4138,7 @@
       "Version": "2.4.0",
       "ReferenceType": "Package",
       "Nodes": [
-        "fc580854a9604bb8bd70764a6fe63575"
+        "220d066bc5ff41bc955743ecf3568d28"
       ]
     }
   ],
@@ -4872,56 +4797,6 @@
       },
       {
         "ShowGeometry": false,
-        "Name": "Code Block",
-        "Id": "82858a14923d4405b917e795fb52a478",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 7188.9026279110694,
-        "Y": 1331.632927838501
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "Code Block",
-        "Id": "a448c738f71b4c81be6c256b88aa4217",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 6283.41415565341,
-        "Y": 1190.103803765461
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "Code Block",
-        "Id": "7f584f7610f743429976cd64772a3060",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 6283.41415565341,
-        "Y": 813.80244038360092
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "o|Document.ActiveView",
-        "Id": "fa755c49cd5b404ea55512bc156f458b",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 6283.41415565341,
-        "Y": 639.644399022004
-      },
-      {
-        "ShowGeometry": false,
-        "Name": "View.Plane",
-        "Id": "fc580854a9604bb8bd70764a6fe63575",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 6283.41415565341,
-        "Y": 728.22466957632491
-      },
-      {
-        "ShowGeometry": false,
         "Name": "Curve.Reverse",
         "Id": "9d17a0d00f254e8da0d376cef6bb389c",
         "IsSetAsInput": false,
@@ -4929,11 +4804,41 @@
         "Excluded": false,
         "X": 9818.33367197774,
         "Y": 1351.37536233057
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Code Block",
+        "Id": "737c973f8cdc40bfbdff1a9eb9dbff44",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6133.3985827010492,
+        "Y": 815.16656850723439
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Plane",
+        "Id": "220d066bc5ff41bc955743ecf3568d28",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6133.3985827010492,
+        "Y": 729.58879769995428
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "o|Document.ActiveView",
+        "Id": "ec86f2e450dd4007aab9c002fefeddf8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6133.3985827010492,
+        "Y": 641.00852714563234
       }
     ],
     "Annotations": [],
-    "X": -737.08870194898623,
-    "Y": 216.60335849057446,
-    "Zoom": 0.17928781196962734
+    "X": -3123.7028751028438,
+    "Y": -189.2576752852209,
+    "Zoom": 1.0372559025224679
   }
 }
