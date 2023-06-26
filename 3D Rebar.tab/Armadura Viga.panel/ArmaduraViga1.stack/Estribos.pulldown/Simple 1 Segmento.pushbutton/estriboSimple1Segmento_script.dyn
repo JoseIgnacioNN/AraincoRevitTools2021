@@ -161,11 +161,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "elem = x[0];\ntipo_barra_extremos = x[1];\nespaciamiento_extremos = x[2];\npata;\npata_names = Revit.Elements.Element.Name(pata);\nmask = pata_names == \"Stirrup/Tie - 135 deg.\";\nhook = DSCore.List.FilterByBoolMask(pata, mask)[\"in\"][0];\n\n//Normal plano vista actual\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\n\n//Variables para filtrar elementos por categoria\nelem_category = Revit.Elements.Element.GetCategory(elem);\nelem_category_name = Revit.Category.Name(elem_category);\n\n//Filtrar vigas de hormigon paralelos a la vista actual\nstructural_framing_mask = elem_category_name == \"Structural Framing\";\nstructural_framing = DSCore.List.FilterByBoolMask(elem, structural_framing_mask)[\"in\"];\nstructural_framing_material = DSCore.List.Flatten(Revit.Elements.Element.GetMaterials(structural_framing, false));\nstructural_framing_material_name = Revit.Material.Name(structural_framing_material);\nstructural_framing_material_mask = structural_framing_material_name == \"Concrete, Cast-in-Place gray\";\nstructural_framing_hormigon = DSCore.List.FilterByBoolMask(structural_framing, structural_framing_material_mask)[\"in\"];\nstructural_framing_hormigon_location = Revit.Elements.Element.GetLocation(structural_framing_hormigon);\nstructural_framing_hormigon_vector = Line.Direction(structural_framing_hormigon_location);\nstructural_framing_hormigon_centroid = Autodesk.Solid.Centroid(DSCore.List.Flatten(Revit.Elements.Element.Geometry(structural_framing_hormigon)));\nstructural_framing_hormigon_coo_sys = Autodesk.Curve.CoordinateSystemAtParameter(structural_framing_hormigon_location);\nstructural_framing_hormigon_vector_mask = Autodesk.Vector.IsParallel(CoordinateSystem.XAxis(structural_framing_hormigon_coo_sys), view_plane_normal);\nstructural_framing_hormigon_lst = DSCore.List.FilterByBoolMask(structural_framing_hormigon, structural_framing_hormigon_vector_mask)[\"in\"];\nstructural_framing_hormigon_lst_location = Revit.Elements.Element.GetLocation(structural_framing_hormigon_lst);\nstructural_framing_hormigon_lst_cut_len = Revit.Elements.Element.GetParameterValueByName(structural_framing_hormigon_lst, \"Cut Length\");\nstructural_framing_hormigon_lst_location_len = Autodesk.Curve.Length(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_location_start_p = Autodesk.Curve.StartPoint(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_location_end_p = Autodesk.Curve.EndPoint(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_vector = Autodesk.Vector.ByTwoPoints(structural_framing_hormigon_lst_location_start_p, structural_framing_hormigon_lst_location_end_p);\nstructural_framing_hormigon_lst_vector_len = Autodesk.Vector.Length(structural_framing_hormigon_lst_vector);\n\n//Altura de Vigas seleccionadas\nelem_altura = Revit.Elements.Element.GetParameterValueByName(Revit.Elements.Element.GetParameterValueByName(elem, \"Type\"), \"Height\");\n\n//Curva de las Vigas\nelem_curve_inicial = Revit.Elements.Element.GetLocation(structural_framing_hormigon_lst);\nelem_curve_inicial_len = DesignScript.Curve.Length(elem_curve_inicial);\ndif_len = DSCore.Math.Abs(structural_framing_hormigon_lst_cut_len - structural_framing_hormigon_lst_location_len) / 2;\nx_1 = Autodesk.Curve.ExtendEnd(Autodesk.Curve.ExtendStart(structural_framing_hormigon_lst_location, (dif_len + 50) * -1), (dif_len + 50) * -1);\nx_2 = Autodesk.Curve.ExtendEnd(Autodesk.Curve.ExtendStart(structural_framing_hormigon_lst_location, (dif_len + 50) * -1), (dif_len + 50) * -1);\n\nelem_curve = [Imperative]\n{\n\tif(structural_framing_hormigon_lst_location_len > structural_framing_hormigon_lst_cut_len)\n\t{\n\t\treturn  x_1;\n\t}\n\telse\n\t{\n\t\treturn  x_2;\n\t}\n};\nelem_curve_start_p = Autodesk.Curve.StartPoint(elem_curve);\nelem_curve_end_p = Autodesk.Curve.EndPoint(elem_curve);\nelem_curve_vector = Autodesk.Vector.ByTwoPoints(elem_curve_start_p, elem_curve_end_p);\nelem_curve_vector_len = Autodesk.Vector.Length(elem_curve_vector);\n\n//Geometria a Cortar\ng_elem_solid = DSCore.List.Flatten(Revit.Elements.Element.Geometry(structural_framing_hormigon_lst));\ng_solid_centroid = Autodesk.Solid.Centroid(g_elem_solid);\ng_solid_coo_sys = Autodesk.Curve.CoordinateSystemAtParameter(structural_framing_hormigon_lst_location, 0.5);\ng_solid_plane = CoordinateSystem.YZPlane(g_solid_coo_sys);\ng_solid_scaled = Autodesk.Geometry.Scale(g_elem_solid, g_solid_plane, 5, 1, 1);\n\n//Geometria Estribo\ngeom_param_at_point = DesignScript.Curve.ParameterAtPoint(elem_curve, elem_curve_start_p);\ngeom_plane_at_param = DesignScript.Curve.PlaneAtParameter(elem_curve, geom_param_at_point);\ngeom_surface = DSCore.List.Flatten(Autodesk.Geometry.Intersect(g_solid_scaled, geom_plane_at_param), -1);\ngeom_surface_perimeter = Autodesk.Surface.PerimeterCurves(geom_surface);\ngeom_surface_perimeter_as_polycurve = PolyCurve.ByJoinedCurves(geom_surface_perimeter);\ngeom_surface_perimeter_curves = Autodesk.Geometry.Explode(PolyCurve.Offset(geom_surface_perimeter_as_polycurve, -25, false));\n\n//Estribos Extermos\ntag_location = g_solid_centroid;\n//curves\ngeom_surface_perimeter_curves;\n//rebarStyle\n\"StirrupTie\";\n//rebarBarType\ntipo_barra_extremos;\n//startHookType\nhook;\n//endHookType\nhook;\n//startHookOrientation\n\"Left\";\n//endtHookOrientation\n\"Left\";\n//hostElement\nstructural_framing_hormigon_lst;\n//vector\nstructural_framing_hormigon_lst_vector;\n//spacing\nespaciamiento_extremos;\n//ArrayLength\nelem_curve_vector_len;\n//Punto para posicionar tag\ntag_location;\n\n\n//",
+      "Code": "elem = x[0];\ntipo_barra_extremos = x[1];\nespaciamiento_extremos = x[2];\npata;\npata_names = Revit.Elements.Element.Name(pata);\nmask = pata_names == \"Stirrup/Tie - 135 deg.\";\nhook = DSCore.List.FilterByBoolMask(pata, mask)[\"in\"][0];\n\n//Normal plano vista actual\nview_plane_normal = Autodesk.Plane.Normal(view_plane);\n\n//Variables para filtrar elementos por categoria\nelem_category = Revit.Elements.Element.GetCategory(elem);\nelem_category_name = Revit.Category.Name(elem_category);\n\n//Filtrar vigas de hormigon paralelos a la vista actual\nstructural_framing_mask = elem_category_name == \"Structural Framing\";\nstructural_framing = DSCore.List.FilterByBoolMask(elem, structural_framing_mask)[\"in\"];\nstructural_framing_material = DSCore.List.Flatten(Revit.Elements.Element.GetMaterials(structural_framing, false));\nstructural_framing_material_name = Revit.Material.Name(structural_framing_material);\nstructural_framing_material_mask = structural_framing_material_name == \"Concrete, Cast-in-Place gray\";\nstructural_framing_hormigon = DSCore.List.FilterByBoolMask(structural_framing, structural_framing_material_mask)[\"in\"];\nstructural_framing_hormigon_location = Revit.Elements.Element.GetLocation(structural_framing_hormigon);\nstructural_framing_hormigon_vector = Line.Direction(structural_framing_hormigon_location);\nstructural_framing_hormigon_centroid = Autodesk.Solid.Centroid(DSCore.List.Flatten(Revit.Elements.Element.Geometry(structural_framing_hormigon)));\nstructural_framing_hormigon_coo_sys = Autodesk.Curve.CoordinateSystemAtParameter(structural_framing_hormigon_location);\nstructural_framing_hormigon_vector_mask = Autodesk.Vector.IsParallel(CoordinateSystem.XAxis(structural_framing_hormigon_coo_sys), view_plane_normal);\nstructural_framing_hormigon_lst = DSCore.List.FilterByBoolMask(structural_framing_hormigon, structural_framing_hormigon_vector_mask)[\"in\"];\nstructural_framing_hormigon_lst_location = Revit.Elements.Element.GetLocation(structural_framing_hormigon_lst);\nstructural_framing_hormigon_lst_cut_len = Revit.Elements.Element.GetParameterValueByName(structural_framing_hormigon_lst, \"Cut Length\");\nstructural_framing_hormigon_lst_location_len = Autodesk.Curve.Length(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_location_start_p = Autodesk.Curve.StartPoint(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_location_end_p = Autodesk.Curve.EndPoint(structural_framing_hormigon_lst_location);\nstructural_framing_hormigon_lst_vector = Autodesk.Vector.ByTwoPoints(structural_framing_hormigon_lst_location_start_p, structural_framing_hormigon_lst_location_end_p);\nstructural_framing_hormigon_lst_vector_len = Autodesk.Vector.Length(structural_framing_hormigon_lst_vector);\n\n//Altura de Vigas seleccionadas\nelem_altura = Revit.Elements.Element.GetParameterValueByName(Revit.Elements.Element.GetParameterValueByName(elem, \"Type\"), \"Height\");\n\n//Curva de las Vigas\nelem_curve_inicial = Revit.Elements.Element.GetLocation(structural_framing_hormigon_lst);\nelem_curve_inicial_len = DesignScript.Curve.Length(elem_curve_inicial);\ndif_len = DSCore.Math.Abs(structural_framing_hormigon_lst_cut_len - structural_framing_hormigon_lst_location_len) / 2;\nx_1 = Autodesk.Curve.ExtendEnd(Autodesk.Curve.ExtendStart(structural_framing_hormigon_lst_location, (dif_len + 50) * -1), (dif_len + 50) * -1);\nx_2 = Autodesk.Curve.ExtendEnd(Autodesk.Curve.ExtendStart(structural_framing_hormigon_lst_location, -50), -50);\n\nelem_curve = [Imperative]\n{\n\tif(structural_framing_hormigon_lst_location_len > structural_framing_hormigon_lst_cut_len)\n\t{\n\t\treturn  x_1;\n\t}\n\telse\n\t{\n\t\treturn  x_2;\n\t}\n};\nelem_curve_start_p = Autodesk.Curve.StartPoint(elem_curve);\nelem_curve_end_p = Autodesk.Curve.EndPoint(elem_curve);\nelem_curve_vector = Autodesk.Vector.ByTwoPoints(elem_curve_start_p, elem_curve_end_p);\nelem_curve_vector_len = Autodesk.Vector.Length(elem_curve_vector);\n\n//Geometria a Cortar\ng_elem_solid = DSCore.List.Flatten(Revit.Elements.Element.Geometry(structural_framing_hormigon_lst));\ng_solid_centroid = Autodesk.Solid.Centroid(g_elem_solid);\ng_solid_coo_sys = Autodesk.Curve.CoordinateSystemAtParameter(structural_framing_hormigon_lst_location, 0.5);\ng_solid_plane = CoordinateSystem.YZPlane(g_solid_coo_sys);\ng_solid_scaled = Autodesk.Geometry.Scale(g_elem_solid, g_solid_plane, 5, 1, 1);\n\n//Geometria Estribo\ngeom_param_at_point = DesignScript.Curve.ParameterAtPoint(elem_curve, elem_curve_start_p);\ngeom_plane_at_param = DesignScript.Curve.PlaneAtParameter(elem_curve, geom_param_at_point);\ngeom_surface = DSCore.List.Flatten(Autodesk.Geometry.Intersect(g_solid_scaled, geom_plane_at_param), -1);\ngeom_surface_perimeter = Autodesk.Surface.PerimeterCurves(geom_surface);\ngeom_surface_perimeter_as_polycurve = PolyCurve.ByJoinedCurves(geom_surface_perimeter);\ngeom_surface_perimeter_curves = Autodesk.Geometry.Explode(PolyCurve.Offset(geom_surface_perimeter_as_polycurve, -25, false));\n\n//Estribos Extermos\ntag_location = g_solid_centroid;\n//curves\ngeom_surface_perimeter_curves;\n//rebarStyle\n\"StirrupTie\";\n//rebarBarType\ntipo_barra_extremos;\n//startHookType\nhook;\n//endHookType\nhook;\n//startHookOrientation\n\"Left\";\n//endtHookOrientation\n\"Left\";\n//hostElement\nstructural_framing_hormigon_lst;\n//vector\nstructural_framing_hormigon_lst_vector;\n//spacing\nespaciamiento_extremos;\n//ArrayLength\nelem_curve_vector_len;\n//Punto para posicionar tag\ntag_location;\n\n\n//",
       "Id": "1bd4fb69ec9845c2a713c184d3b0e462",
       "Inputs": [
         {
-          "Id": "86472b92293a49cfb7d10c7036967cf3",
+          "Id": "03127b6f6bd74f35961311081b00b0f1",
           "Name": "x",
           "Description": "x",
           "UsingDefaultValue": false,
@@ -174,7 +174,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "90546d8ae92c4079a7cb62069997aeda",
+          "Id": "2b0a830f3deb456eabdefdc3435e5f0a",
           "Name": "pata",
           "Description": "pata",
           "UsingDefaultValue": false,
@@ -183,7 +183,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "c6bfa3b82a844012bb20ecfb40af06a1",
+          "Id": "5de14190211f468182c66f7f5ad14d58",
           "Name": "view_plane",
           "Description": "view_plane",
           "UsingDefaultValue": false,
@@ -194,7 +194,7 @@
       ],
       "Outputs": [
         {
-          "Id": "df098d7270c340ecba1ea0e5c7658552",
+          "Id": "747cd91161994fd389bcfe05ec03f741",
           "Name": "",
           "Description": "elem",
           "UsingDefaultValue": false,
@@ -203,7 +203,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "d4da294efa4f4e948a46a3af936494be",
+          "Id": "fbedcdd703314fd8920bbcc53db21c7d",
           "Name": "",
           "Description": "tipo_barra_extremos",
           "UsingDefaultValue": false,
@@ -212,7 +212,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "3510cd1448784a4f94888eefa33d163f",
+          "Id": "fbd11f5ac0fc4436a87881f198d27f45",
           "Name": "",
           "Description": "espaciamiento_extremos",
           "UsingDefaultValue": false,
@@ -221,7 +221,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0e03a60d173b4b3aad870733f77b35b0",
+          "Id": "cf06bed9e1884e89b8e31c29c7bf8829",
           "Name": "",
           "Description": "Value of expression at line 4",
           "UsingDefaultValue": false,
@@ -230,7 +230,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "a235f7ad115e42579beb1766fe989d2e",
+          "Id": "9af7070bb43748f1a86eb905e79fa2db",
           "Name": "",
           "Description": "pata_names",
           "UsingDefaultValue": false,
@@ -239,7 +239,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "7b824a512fb745639980832cbe822618",
+          "Id": "484e588926b54a14ab8aa903f5eef221",
           "Name": "",
           "Description": "mask",
           "UsingDefaultValue": false,
@@ -248,7 +248,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "152dc4144c20497aa081a43874407d9b",
+          "Id": "829d38b7c8cc446e86580d0c98e1df6d",
           "Name": "",
           "Description": "hook",
           "UsingDefaultValue": false,
@@ -257,7 +257,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8eb87974dfb844f6987b41e935f3f4b9",
+          "Id": "5edef8698072409aaaed13b1b89bc673",
           "Name": "",
           "Description": "view_plane_normal",
           "UsingDefaultValue": false,
@@ -266,7 +266,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "27aaff0a22134b788d8e49c7ebb33ae4",
+          "Id": "0f25ff66a30d4552895606673ceaabc2",
           "Name": "",
           "Description": "elem_category",
           "UsingDefaultValue": false,
@@ -275,7 +275,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "cb1f5cc2d76e44d99e36a9546b1f1f11",
+          "Id": "e16381c3fd9a4919b4fd07e200f9ef28",
           "Name": "",
           "Description": "elem_category_name",
           "UsingDefaultValue": false,
@@ -284,7 +284,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8c3fc22d1a884bad9b150ff00769a245",
+          "Id": "83679df42269437ca9b644d145dbe028",
           "Name": "",
           "Description": "structural_framing_mask",
           "UsingDefaultValue": false,
@@ -293,7 +293,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "94dc2b5d291d441f9a937ae01e625db0",
+          "Id": "3aa3549e99be4c76988609e72186ae16",
           "Name": "",
           "Description": "structural_framing",
           "UsingDefaultValue": false,
@@ -302,7 +302,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "7afaea88f2244ed785607ed1fd8454bb",
+          "Id": "b21cd910f73f42ff93bd9f6249c68550",
           "Name": "",
           "Description": "structural_framing_material",
           "UsingDefaultValue": false,
@@ -311,7 +311,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "599a40074d5e4426a460ae646f2be66d",
+          "Id": "731c4da7cb21491e9d004651cb1397d9",
           "Name": "",
           "Description": "structural_framing_material_name",
           "UsingDefaultValue": false,
@@ -320,7 +320,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2987d47d1be245eb8cc4332042c6546c",
+          "Id": "bb944868925047d18810feeab6b9ae09",
           "Name": "",
           "Description": "structural_framing_material_mask",
           "UsingDefaultValue": false,
@@ -329,7 +329,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "d7d45854b89f40998f8ccc30051a0359",
+          "Id": "bdda66ea9ac04441a7f22e2b077033ea",
           "Name": "",
           "Description": "structural_framing_hormigon",
           "UsingDefaultValue": false,
@@ -338,7 +338,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2e106dde30654a4fa62f34036bd8c802",
+          "Id": "075aee811fd942bebf8f63c3871c5da2",
           "Name": "",
           "Description": "structural_framing_hormigon_location",
           "UsingDefaultValue": false,
@@ -347,7 +347,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "f955d07f0e814229befb7b5acfdc95ba",
+          "Id": "d7613c3a0ce842ed8fd78d4235eff072",
           "Name": "",
           "Description": "structural_framing_hormigon_vector",
           "UsingDefaultValue": false,
@@ -356,7 +356,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1560858f9bed4c5c9e3d5c52b1990f00",
+          "Id": "2c77f1dca39643e083aedb1b8445f3be",
           "Name": "",
           "Description": "structural_framing_hormigon_centroid",
           "UsingDefaultValue": false,
@@ -365,7 +365,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "11469b635ebc4a81b4df53c0b31caf5a",
+          "Id": "0a877c29dbda4523bc6f0341efb19451",
           "Name": "",
           "Description": "structural_framing_hormigon_coo_sys",
           "UsingDefaultValue": false,
@@ -374,7 +374,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "3de9eebb1d114993b2f7f0c8e2baec40",
+          "Id": "6c496e7d87e441aea3a84347ac69e178",
           "Name": "",
           "Description": "structural_framing_hormigon_vector_mask",
           "UsingDefaultValue": false,
@@ -383,7 +383,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "85b5f9995b1f4ed782b3934c0905de1b",
+          "Id": "b2bde16491fa42fc94b586669f72b480",
           "Name": "",
           "Description": "structural_framing_hormigon_lst",
           "UsingDefaultValue": false,
@@ -392,7 +392,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1f1421b984884527afe2f2cb162222c3",
+          "Id": "bdb71b77698248f39fd90635dddcb69e",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_location",
           "UsingDefaultValue": false,
@@ -401,7 +401,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "9696d9d7ad41400b9227ddcc64706edd",
+          "Id": "e8897d911a4548f381eeab4b1dd6854d",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_cut_len",
           "UsingDefaultValue": false,
@@ -410,7 +410,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2a4ed2038a90444093a5a0ed0ed14438",
+          "Id": "79dd956c284a453f98b613869fbad61c",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_location_len",
           "UsingDefaultValue": false,
@@ -419,7 +419,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "d588f2b0a23b4e5aa9bc2d84e310ce7e",
+          "Id": "6bee44775b29443c96dd3e7e9c8898c2",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_location_start_p",
           "UsingDefaultValue": false,
@@ -428,7 +428,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "49c5ce1307af48159cbb6bce5397d368",
+          "Id": "b1d72aca843f4d4e8890f584b49feb17",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_location_end_p",
           "UsingDefaultValue": false,
@@ -437,7 +437,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2325c63f239f434795abb0b1f4c13b07",
+          "Id": "5fed05069f4647a9ac5e589bfd531c5c",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_vector",
           "UsingDefaultValue": false,
@@ -446,7 +446,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0cf99888447c4f61b49fa7ef7e89ad90",
+          "Id": "9785aee1687146fea5f6a8578948e106",
           "Name": "",
           "Description": "structural_framing_hormigon_lst_vector_len",
           "UsingDefaultValue": false,
@@ -455,7 +455,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1fecc2c5ce9a462196984c6f1b8b5648",
+          "Id": "1b7b701f74a94e18a45076f27991dd99",
           "Name": "",
           "Description": "elem_altura",
           "UsingDefaultValue": false,
@@ -464,7 +464,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "89fdbd3676444a96b37fbd9ac36d4d51",
+          "Id": "1dd3241fb96e43b9b8e4749d279f27cc",
           "Name": "",
           "Description": "elem_curve_inicial",
           "UsingDefaultValue": false,
@@ -473,7 +473,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0e6fb608325f4ddab52b84e42b88da5e",
+          "Id": "420af1c0a47b41a1aae9a905a22244c6",
           "Name": "",
           "Description": "elem_curve_inicial_len",
           "UsingDefaultValue": false,
@@ -482,7 +482,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b6cafd19a49c4763ab0eb9d4d953da99",
+          "Id": "5e9729a5d4a7473da6cf9470e34a79d6",
           "Name": "",
           "Description": "dif_len",
           "UsingDefaultValue": false,
@@ -491,7 +491,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e2dd1eba3e6e480b97ec63567bef82cf",
+          "Id": "d6c690b1c8074c839c082dbf6093f22f",
           "Name": "",
           "Description": "x_1",
           "UsingDefaultValue": false,
@@ -500,7 +500,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "665477387d90444db64a8d97a9f87f5c",
+          "Id": "eb0ff30134734c3f807b8a24cca4a02a",
           "Name": "",
           "Description": "x_2",
           "UsingDefaultValue": false,
@@ -509,7 +509,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "680cefe5ea2a497c8a59c395e03ad011",
+          "Id": "b271a1f0b7fb451789804621d0b46a24",
           "Name": "",
           "Description": "elem_curve",
           "UsingDefaultValue": false,
@@ -518,7 +518,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "421ec0ecd3424abd81df430795ec23ad",
+          "Id": "5f4650c69c24479d8d9e986454cace61",
           "Name": "",
           "Description": "elem_curve_start_p",
           "UsingDefaultValue": false,
@@ -527,7 +527,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "875eaf00b2614ceba832a97fccf515f1",
+          "Id": "fb62566ea23b4f8084621ab27272ed1f",
           "Name": "",
           "Description": "elem_curve_end_p",
           "UsingDefaultValue": false,
@@ -536,7 +536,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2f8d92ffffd84376a215b9afc4a5a7d9",
+          "Id": "2054a737e9d64573a570bbbe5b632c86",
           "Name": "",
           "Description": "elem_curve_vector",
           "UsingDefaultValue": false,
@@ -545,7 +545,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b38afc13ead64f4d8e63018a997d8865",
+          "Id": "24f0a81eb82c4b8899f935a4ce306ed7",
           "Name": "",
           "Description": "elem_curve_vector_len",
           "UsingDefaultValue": false,
@@ -554,7 +554,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "f9790f3b46e8466483cdca79a884d9df",
+          "Id": "7876b79e9d9b44748784e96ca79a09f8",
           "Name": "",
           "Description": "g_elem_solid",
           "UsingDefaultValue": false,
@@ -563,7 +563,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "db7243654aee4ddc8545e0ede86aa679",
+          "Id": "38d9b0dab557412eb0b0db320e401fa2",
           "Name": "",
           "Description": "g_solid_centroid",
           "UsingDefaultValue": false,
@@ -572,7 +572,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "db86ba6f4e1542bfba4d210fc6af451e",
+          "Id": "5f3e7bbe58c3482b9be52745cf7db1d9",
           "Name": "",
           "Description": "g_solid_coo_sys",
           "UsingDefaultValue": false,
@@ -581,7 +581,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "482ec4f9dea3491fa55a3ce15dd73444",
+          "Id": "652fdfdcea824772a344c0064764991d",
           "Name": "",
           "Description": "g_solid_plane",
           "UsingDefaultValue": false,
@@ -590,7 +590,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "80d8a01836bd4b6ea3a947da787eb616",
+          "Id": "3488caabd0c54e899be18ff86235cdb8",
           "Name": "",
           "Description": "g_solid_scaled",
           "UsingDefaultValue": false,
@@ -599,7 +599,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "4ae654fc0e7849f580d3a6dc265dd1a1",
+          "Id": "4ba0f97eb63d44998a05c33f41f7c920",
           "Name": "",
           "Description": "geom_param_at_point",
           "UsingDefaultValue": false,
@@ -608,7 +608,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e1af8ec735064a2aba6c1e0846be365e",
+          "Id": "ba5d022d73c34cd9b218fffb9eb638b4",
           "Name": "",
           "Description": "geom_plane_at_param",
           "UsingDefaultValue": false,
@@ -617,7 +617,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "1b34f132153d482e8f9c71fde98a767c",
+          "Id": "f2fb33cbe3984357913bb9a6916202d4",
           "Name": "",
           "Description": "geom_surface",
           "UsingDefaultValue": false,
@@ -626,7 +626,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "adb2a56900824e57995953c3ee513aa4",
+          "Id": "62bd66bf4f054fc2aa4146559761ba55",
           "Name": "",
           "Description": "geom_surface_perimeter",
           "UsingDefaultValue": false,
@@ -635,7 +635,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "57eb9b22b03d464eb1830a82cdcf475f",
+          "Id": "720abe442e944d8e943beb1040798eef",
           "Name": "",
           "Description": "geom_surface_perimeter_as_polycurve",
           "UsingDefaultValue": false,
@@ -644,7 +644,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "47eba60a7d1843ae93bcf65cf68bf71f",
+          "Id": "b97b2039754c4be08ce3b560bbedbcb5",
           "Name": "",
           "Description": "geom_surface_perimeter_curves",
           "UsingDefaultValue": false,
@@ -653,7 +653,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "dc157f9457314b6595b40f85047ce46b",
+          "Id": "a279902ed34347e6aac29a98033acb67",
           "Name": "",
           "Description": "tag_location",
           "UsingDefaultValue": false,
@@ -662,7 +662,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8734b9d885bf426b946808326d82302a",
+          "Id": "1a2eaaf55d91441d90a505b77f12eb7f",
           "Name": "",
           "Description": "Value of expression at line 81",
           "UsingDefaultValue": false,
@@ -671,7 +671,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "fa76db6623f14f40aa804f14009a5944",
+          "Id": "942b49489cf6491892ab0f94ecb62e00",
           "Name": "",
           "Description": "Value of expression at line 83",
           "UsingDefaultValue": false,
@@ -680,7 +680,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "c638147af0324267ba2099e44c460b39",
+          "Id": "1a93c7279ab84a869946d388659e4950",
           "Name": "",
           "Description": "Value of expression at line 85",
           "UsingDefaultValue": false,
@@ -689,7 +689,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e042997f538543edb40e187ed981a501",
+          "Id": "63210280e88c4695be2724f2df794dda",
           "Name": "",
           "Description": "Value of expression at line 87",
           "UsingDefaultValue": false,
@@ -698,7 +698,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "dcc3105d920b43d98dc35690587b6400",
+          "Id": "2b8f560ce65e4bffb191d1eb5b669eb1",
           "Name": "",
           "Description": "Value of expression at line 89",
           "UsingDefaultValue": false,
@@ -707,7 +707,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "a9c02bf6a3514795be0c3cffe2faa1b0",
+          "Id": "9787b7951c514b17addbeb87d8520ed4",
           "Name": "",
           "Description": "Value of expression at line 91",
           "UsingDefaultValue": false,
@@ -716,7 +716,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0a4cf7ede45f4ef89978d456fb85b9e3",
+          "Id": "11bae96273eb49ca9d6b011bd0abab2d",
           "Name": "",
           "Description": "Value of expression at line 93",
           "UsingDefaultValue": false,
@@ -725,7 +725,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "ccc87fa4fbba46f0a8163fb0627ef7d6",
+          "Id": "0c98f9ae440c4dad8c79200c02ea1acb",
           "Name": "",
           "Description": "Value of expression at line 95",
           "UsingDefaultValue": false,
@@ -734,7 +734,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e2ad420fa5b1419eb69ac34c38ef1d54",
+          "Id": "761684aeaf794b4389ab851d85201ef9",
           "Name": "",
           "Description": "Value of expression at line 97",
           "UsingDefaultValue": false,
@@ -743,7 +743,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8b26b8c12638424aaefa810e5c5fea31",
+          "Id": "1ca08f857b684871bf16f1955bc0bf7c",
           "Name": "",
           "Description": "Value of expression at line 99",
           "UsingDefaultValue": false,
@@ -752,7 +752,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "9ebf5a0bd9764ebd8ace5aa91373da94",
+          "Id": "570ef907accc4eff8f7f7a5e8325706f",
           "Name": "",
           "Description": "Value of expression at line 101",
           "UsingDefaultValue": false,
@@ -761,7 +761,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "005cc8533556401995b1bc3663dc19c8",
+          "Id": "1d977787522b4fa8aa01bd9e53b3f131",
           "Name": "",
           "Description": "Value of expression at line 103",
           "UsingDefaultValue": false,
@@ -2294,64 +2294,64 @@
   ],
   "Connectors": [
     {
-      "Start": "8734b9d885bf426b946808326d82302a",
+      "Start": "1a2eaaf55d91441d90a505b77f12eb7f",
       "End": "59255157064b45c8acfdb3b1e13ee465",
-      "Id": "be91a5b1e6f64fb39fb5f2bbf7ec4607"
+      "Id": "07cb4abeb7b746b093738fc7fda161ba"
     },
     {
-      "Start": "fa76db6623f14f40aa804f14009a5944",
+      "Start": "942b49489cf6491892ab0f94ecb62e00",
       "End": "d89f81aba3934ebb95f582726d97ce86",
-      "Id": "89b0eaf92da14be99c9dbc82d5d4ce4a"
+      "Id": "87ecc277657c45038d36f26cb660947f"
     },
     {
-      "Start": "c638147af0324267ba2099e44c460b39",
+      "Start": "1a93c7279ab84a869946d388659e4950",
       "End": "2e80f2acd8fd4311b7a5c105f807f87a",
-      "Id": "29561eabdd0d476ebff09cb8db359b91"
+      "Id": "e1b8005e7bb643679d3e96b1970a98a0"
     },
     {
-      "Start": "e042997f538543edb40e187ed981a501",
+      "Start": "63210280e88c4695be2724f2df794dda",
       "End": "d39f3f1cd63b4e78812e551bd506bd2f",
-      "Id": "6254bf97a25b4a20992acf8e2dc0c9db"
+      "Id": "b6e8b3b650524818ab0e2cc357abae56"
     },
     {
-      "Start": "dcc3105d920b43d98dc35690587b6400",
+      "Start": "2b8f560ce65e4bffb191d1eb5b669eb1",
       "End": "79a0550d9ce740798a66e77aed0a5b53",
-      "Id": "cd0ce1fd106b436697869d483ba47b7b"
+      "Id": "99c1814d9acb48bbb0880f6848510afa"
     },
     {
-      "Start": "a9c02bf6a3514795be0c3cffe2faa1b0",
+      "Start": "9787b7951c514b17addbeb87d8520ed4",
       "End": "d75d7b19d2db42ec95c36f764db53a09",
-      "Id": "7966920276524147987f78d46b783087"
+      "Id": "e9bf7095ca354474b885697e15af30a7"
     },
     {
-      "Start": "0a4cf7ede45f4ef89978d456fb85b9e3",
+      "Start": "11bae96273eb49ca9d6b011bd0abab2d",
       "End": "4696ef532c1e46a0be8ff53c307fe029",
-      "Id": "d9577775d6304e17949005eaefea4017"
+      "Id": "0c1f45d84b21478b8ff542befe226953"
     },
     {
-      "Start": "ccc87fa4fbba46f0a8163fb0627ef7d6",
+      "Start": "0c98f9ae440c4dad8c79200c02ea1acb",
       "End": "6547faed8a4e45f8bb2b4bbc57a70a70",
-      "Id": "361ce7b4bcab458f8b8cd1a0273dc39e"
+      "Id": "159d75fa9442470ab190681914ec399b"
     },
     {
-      "Start": "e2ad420fa5b1419eb69ac34c38ef1d54",
+      "Start": "761684aeaf794b4389ab851d85201ef9",
       "End": "9ca2b3f0b702449f8442af9d5fe63f06",
-      "Id": "6945fff5fab14f4784b20ccef4db97c0"
+      "Id": "5639d048015c410f8739d118f5abb7cc"
     },
     {
-      "Start": "8b26b8c12638424aaefa810e5c5fea31",
+      "Start": "1ca08f857b684871bf16f1955bc0bf7c",
       "End": "ccc5d4c2ecb24930829707ccf6de40f8",
-      "Id": "58fd8f8f1446474aad47f51a1c82997c"
+      "Id": "f467b7a158c540d7aee086a1514802bf"
     },
     {
-      "Start": "9ebf5a0bd9764ebd8ace5aa91373da94",
+      "Start": "570ef907accc4eff8f7f7a5e8325706f",
       "End": "6932ddbd72ec4913ac9ffb307cc87496",
-      "Id": "e8fc166392b346ad816e43931547c771"
+      "Id": "9a6a6a3507ba4574916d56e730dd9040"
     },
     {
-      "Start": "005cc8533556401995b1bc3663dc19c8",
+      "Start": "1d977787522b4fa8aa01bd9e53b3f131",
       "End": "2102c6bd6d9c4ba8b3b5f325037c2e01",
-      "Id": "ab3acff1267e4969ad1b11e715d995df"
+      "Id": "57a30b3a03d545d5a1f6f5c006620077"
     },
     {
       "Start": "aeb36a52826a4cac822c842fd4e3b8a4",
@@ -2360,8 +2360,8 @@
     },
     {
       "Start": "70e644fafb7642fba1ce0fece825ba50",
-      "End": "90546d8ae92c4079a7cb62069997aeda",
-      "Id": "c0bcdef3e6e240979c91b58acfa9bb4a"
+      "End": "2b0a830f3deb456eabdefdc3435e5f0a",
+      "Id": "67f5bd3cd88b43538fb6df4eb478d81d"
     },
     {
       "Start": "3bb2cf6171194caf84fcabc030d3d633",
@@ -2375,8 +2375,8 @@
     },
     {
       "Start": "e21ed70392ff488f9c0e0c6829ead474",
-      "End": "c6bfa3b82a844012bb20ecfb40af06a1",
-      "Id": "9dbc9215d5424e5f9dfb84df23ae45fc"
+      "End": "5de14190211f468182c66f7f5ad14d58",
+      "Id": "e7e9acc37d704e6ab19c283f96b4f6a3"
     },
     {
       "Start": "fc5f513e8e3d4b1ea38ab18ed82972df",
@@ -2440,8 +2440,8 @@
     },
     {
       "Start": "aab02f25bf514186ae9296a92696aa75",
-      "End": "86472b92293a49cfb7d10c7036967cf3",
-      "Id": "bb91152b326542e2b731c9fda1cb075e"
+      "End": "03127b6f6bd74f35961311081b00b0f1",
+      "Id": "84a847e05b2f4651958bdfd6ed876475"
     },
     {
       "Start": "17654f0fe57544de8351a5d457131e6c",
@@ -2998,8 +2998,8 @@
       }
     ],
     "Annotations": [],
-    "X": 2153.3852211458466,
-    "Y": -216.17662309895059,
-    "Zoom": 0.24270932575546672
+    "X": 4846.9803858454034,
+    "Y": -4404.0890529223634,
+    "Zoom": 1.3426269153520123
   }
 }
