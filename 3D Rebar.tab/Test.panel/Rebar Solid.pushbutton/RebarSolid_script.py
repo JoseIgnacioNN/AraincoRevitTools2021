@@ -17,8 +17,8 @@ from pyrevit import script
 __author__ = "[Tu Nombre]"
 
 # Obtener el documento activo y la vista activa
-doc = revit.doc
-uidoc = revit.uidoc
+doc = __revit__.ActiveUIDocument.Document
+uidoc = __revit__.ActiveUIDocument
 view = uidoc.ActiveView
 
 # Iniciar una transacción
