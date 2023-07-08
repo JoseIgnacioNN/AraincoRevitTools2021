@@ -5,41 +5,37 @@
 # script authors: [Tu Nombre]
 # script license: MIT
 
-# Importar las referencias necesarias
+# Importar los módulos necesarios
 import clr
-clr.AddReference('RevitAPI')
-clr.AddReference('RevitAPIUI')
+clr.AddReference("RevitAPI")
+clr.AddReference("RevitAPIUI")
 from Autodesk.Revit.DB import BuiltInCategory, FilteredElementCollector, Transaction
 
 # Obtener los servicios de Revit
-doc = __revit__.ActiveUIDocument.Document
-uiapp = __revit__.Application
-uidoc = __revit__.ActiveUIDocument
+from pyrevit import revit, DB
+from pyrevit import script
+__author__ = "[Tu Nombre]"
 
-# Recopilar los elementos de refuerzo
-rebars = [rebar for rebar in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rebar).WhereElementIsNotElementType()]
+# Obtener el documento activo y la vista activa
+doc = revit.doc
+uidoc = revit.uidoc
+view = uidoc.ActiveView
 
-# Obtener la vista activa
-view = doc.ActiveView
+# Iniciar una transacción
+with revit.Transaction("Set Rebar Solid and Unobscured In View"):
+    # Recopilar todos los elementos de refuerzo
+    rebars = (
+        FilteredElementCollector(doc)
+        .OfCategory(BuiltInCategory.OST_Rebar)
+        .WhereElementIsNotElementType()
+        .ToElements()
+    )
 
-# Iniciar la transacción
-transaction = Transaction(doc, "Set Rebar Solid and Unobscured In View")
-transaction.Start()
-
-try:
-    # Establecer los elementos de refuerzo como sólidos y no ocultos en la vista activa
+    # Iterar sobre cada elemento de refuerzo
     for rebar in rebars:
+        # Establecer el refuerzo como sólido y no oculto en la vista
         rebar.SetSolidInView(view, True)
         rebar.SetUnobscuredInView(view, True)
 
-    # Confirmar la transacción
-    transaction.Commit()
-except:
-    # Anular la transacción en caso de errores
-    transaction.RollBack()
-    raise
-
-# Imprimir los elementos de refuerzo
-OUT = rebars
-
-
+# Mostrar el resultado
+script.show_output(rebars)
