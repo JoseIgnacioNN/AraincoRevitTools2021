@@ -32,5 +32,4 @@ with revit.Transaction("Set Rebar Solid and Unobscured In View"):
         rebar.SetSolidInView(view, True)
         rebar.SetUnobscuredInView(view, True)
 
-# Mostrar el resultado
-script.show_output(rebars)
+
