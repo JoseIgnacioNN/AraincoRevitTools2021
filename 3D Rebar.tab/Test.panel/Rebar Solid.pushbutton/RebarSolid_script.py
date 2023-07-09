@@ -1,5 +1,4 @@
-"""script title: Set Rebar Solid and Unobscured In View"""
-
+# -*- coding: utf-8 -*-
 
 # Importar los módulos necesarios
 import clr
@@ -10,6 +9,7 @@ from Autodesk.Revit.DB import BuiltInCategory, FilteredElementCollector, Transac
 # Obtener los servicios de Revit
 from pyrevit import revit, DB
 from pyrevit import script
+__author__ = "[Tu Nombre]"
 
 # Obtener el documento activo y la vista activa
 doc = __revit__.ActiveUIDocument.Document
@@ -31,3 +31,6 @@ with revit.Transaction("Set Rebar Solid and Unobscured In View"):
         # Establecer el refuerzo como sólido y no oculto en la vista
         rebar.SetSolidInView(view, True)
         rebar.SetUnobscuredInView(view, True)
+
+# Mostrar el resultado
+script.show_output(rebars)
