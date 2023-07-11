@@ -1,0 +1,86 @@
+{
+  "Uuid": "2bd9cf38-305b-4b25-a41d-01b8ff3ae096",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "3DRebarSolid",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference('ProtoGeometry')\r\nclr.AddReference('DSCoreNodes')\r\nclr.AddReference('RevitNodes')\r\nclr.AddReference('DynamoRevitDS')\r\nclr.AddReference('RevitAPI')\r\nclr.AddReference('RevitAPIUI')\r\nclr.AddReference('RevitServices')\r\n\r\nfrom Autodesk.DesignScript.Geometry import *\r\nimport DSCore\r\nimport Revit\r\nimport Dynamo\r\nfrom Autodesk.Revit.DB import *\r\nfrom Autodesk.Revit.DB.Architecture import *\r\nfrom Autodesk.Revit.ApplicationServices import *\r\nfrom Autodesk.Revit.DB.Structure import *\r\nfrom Autodesk.Revit.UI import *\r\nfrom Autodesk.Revit.UI.Selection import *\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\nuidoc = uiapp.ActiveUIDocument\r\n\r\nimport datetime\r\nfrom datetime import datetime\r\n\r\nrebars = [rebar for rebar in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rebar).WhereElementIsNotElementType()]\r\n\r\nview = doc.ActiveView\r\ntransaction = Transaction(doc, \"Set Rebar Solid and Unobscured In View\")\r\ntransaction.Start()\r\n\r\ntry:\r\n    for rebar in rebars:\r\n        rebar.SetSolidInView(view, True)\r\n        rebar.SetUnobscuredInView(view, True)\r\n\r\n    transaction.Commit()\r\nexcept:\r\n    transaction.RollBack()\r\n    raise\r\n\r\nOUT = rebars\r\n",
+      "VariableInputPorts": true,
+      "Id": "f754b7b17a004f16bc2e45a90412f49a",
+      "Inputs": [
+        {
+          "Id": "75a9493cd005463bb309545913212cc6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e7f15f6e69174427b74353a728df13c1",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.2.15705",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "f754b7b17a004f16bc2e45a90412f49a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Python Script",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 429.55932472621055,
+        "Y": -59.435150948224759
+      }
+    ],
+    "Annotations": [],
+    "X": 9.8248437499999568,
+    "Y": 359.66511875000003,
+    "Zoom": 0.70823125000000009
+  }
+}
